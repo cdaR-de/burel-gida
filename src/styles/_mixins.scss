@@ -1,0 +1,52 @@
+@import 'variables';
+
+// Responsive breakpoint mixins
+@mixin mobile {
+  @media (max-width: #{$breakpoint-sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: $breakpoint-sm) and (max-width: #{$breakpoint-md - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $breakpoint-md) {
+    @content;
+  }
+}
+
+@mixin large-desktop {
+  @media (min-width: $breakpoint-lg) {
+    @content;
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Typography mixins
+@mixin heading-style {
+  font-family: $font-heading;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+@mixin body-text {
+  font-family: $font-primary;
+  font-size: $text-base;
+  line-height: 1.6;
+}

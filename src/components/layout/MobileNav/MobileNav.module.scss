@@ -1,0 +1,204 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+// Overlay
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 200;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// Drawer
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 85%;
+  max-width: 320px;
+  background-color: white;
+  z-index: 201;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.3s ease;
+
+  @include tablet {
+    max-width: 360px;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+// Header
+.header {
+  @include flex-between;
+  padding: $spacing-lg $spacing-md;
+  border-bottom: 1px solid $color-neutral-100;
+}
+
+.title {
+  @include heading-style;
+  font-size: $text-xl;
+  color: $color-neutral-900;
+  margin: 0;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: $color-neutral-700;
+  cursor: pointer;
+  padding: $spacing-sm;
+  min-width: 44px;
+  min-height: 44px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $color-neutral-50;
+    color: $color-neutral-900;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+  }
+}
+
+// Navigation
+.nav {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing-md 0;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navLink {
+  display: block;
+  padding: $spacing-md $spacing-lg;
+  color: $color-neutral-700;
+  text-decoration: none;
+  font-size: $text-lg;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    background-color: $color-primary-50;
+    color: $color-primary-700;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-500;
+    outline-offset: -2px;
+  }
+
+  &:active {
+    background-color: $color-primary-100;
+  }
+
+  // Active state (will be enhanced with actual routing)
+  &.active {
+    background-color: $color-primary-50;
+    color: $color-primary-700;
+    font-weight: 600;
+  }
+}
+
+// Search Section
+.searchSection {
+  padding: $spacing-md $spacing-lg;
+  border-top: 1px solid $color-neutral-100;
+}
+
+.searchInput {
+  width: 100%;
+  padding: $spacing-md;
+  border: 1px solid $color-neutral-100;
+  border-radius: 8px;
+  font-size: $text-base;
+  font-family: $font-primary;
+  transition: all 0.2s ease;
+  min-height: 44px;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary-500;
+    box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.1);
+  }
+
+  &::placeholder {
+    color: $color-neutral-500;
+  }
+}
+
+// Language Section
+.languageSection {
+  padding: $spacing-md $spacing-lg;
+  border-top: 1px solid $color-neutral-100;
+}
+
+.langButton {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  width: 100%;
+  padding: $spacing-md;
+  background-color: $color-neutral-50;
+  border: 1px solid $color-neutral-100;
+  border-radius: 8px;
+  font-size: $text-base;
+  font-weight: 600;
+  color: $color-neutral-700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-height: 44px;
+  justify-content: center;
+
+  &:hover {
+    background-color: $color-primary-50;
+    border-color: $color-primary-500;
+    color: $color-primary-700;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+  }
+
+  svg {
+    flex-shrink: 0;
+  }
+}

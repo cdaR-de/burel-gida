@@ -1,0 +1,492 @@
+# Implementation Plan
+
+## Overview
+This implementation plan breaks down the food safety website development into incremental, actionable coding tasks. Each task builds upon previous work to create a fully functional, user-friendly website with educational content, multi-language support, and compliance features.
+
+## Tasks
+
+- [x] 1. Initialize Next.js project with TypeScript and core dependencies
+  - Create Next.js 14+ project with App Router and TypeScript configuration
+  - Install and configure SCSS support for CSS Modules
+  - Set up project structure with src/app, src/components, src/lib, src/styles directories
+  - Configure next.config.js for internationalization and image optimization
+  - Create .gitignore and basic README documentation
+  - _Requirements: 1.2, 1.3, 3.1_
+
+- [x] 2. Implement design system and base UI components
+  - [x] 2.1 Create global design system with SCSS variables
+    - Create _variables.scss with color palette (primary blue, secondary green, neutral, semantic colors)
+    - Define typography variables (Inter, Poppins fonts, font sizes)
+    - Set up spacing scale variables (8px grid system)
+    - Define responsive breakpoint mixins (sm: 640px, md: 768px, lg: 1024px, xl: 1280px)
+    - Create _mixins.scss for reusable styling patterns
+    - Set up global.scss for base styles and CSS reset
+    - _Requirements: 1.3, 1.4, 3.1_
+  - [x] 2.2 Build reusable UI components
+    - Create Button component with variants (primary, secondary, outline)
+    - Create Card component for content display
+    - Create Badge component for tags and categories
+    - Create Input and Textarea components with validation states
+    - Create Loading spinner and skeleton components
+    - _Requirements: 1.2, 3.4_
+
+- [x] 3. Set up internationalization (i18n) infrastructure
+  - [x] 3.1 Configure next-intl for multi-language support
+    - Install next-intl package
+    - Create middleware for locale detection and routing
+    - Set up messages directory with tr.json and en.json files
+    - Configure [locale] dynamic route structure
+    - Implement locale persistence in cookies
+    - _Requirements: 6.1, 6.3, 6.4, 6.5_
+  - [ ] 3.2 Create LanguageSwitcher component
+    - Build dropdown UI for language selection
+    - Implement locale switching logic with URL updates
+    - Add visual indicator for current language
+    - Store language preference in localStorage
+    - _Requirements: 6.2, 6.3, 6.4_
+  - [ ] 3.3 Add initial translation strings
+    - Create common UI translations (navigation, buttons, forms)
+    - Add error message translations
+    - Create footer and header text translations
+    - _Requirements: 6.5_
+
+- [x] 4. Build layout components and navigation
+  - [x] 4.1 Create Header component
+    - Build responsive navigation menu with links (home, blog, guides, FAQ, about, contact)
+    - Integrate LanguageSwitcher component
+    - Add logo and branding area
+    - Implement mobile menu toggle button
+    - Add search bar placeholder for desktop view
+    - Style with hover effects and active states
+    - _Requirements: 1.1, 1.5, 3.3, 6.2_
+  - [x] 4.2 Create Footer component
+    - Add quick links to main sections
+    - Include contact information display
+    - Add social media icon links
+    - Create legal links section (privacy, terms, cookies)
+    - Implement responsive layout
+    - _Requirements: 1.1, 7.4, 10.2, 10.3_
+  - [x] 4.3 Create mobile Navigation component
+    - Build slide-out drawer for mobile menu
+    - Implement touch-friendly navigation (44x44px minimum tap targets)
+    - Add close button and overlay
+    - Ensure accessibility with ARIA labels
+    - _Requirements: 3.3, 3.4_
+  - [x] 4.4 Create root layout with Header and Footer
+    - Build layout.tsx with consistent structure
+    - Integrate Header and Footer components
+    - Add metadata configuration for SEO
+    - Set up font loading (Inter, Poppins)
+    - _Requirements: 1.1, 1.4, 8.1, 8.2_
+
+- [x] 5. Implement MDX content infrastructure
+  - [x] 5.1 Set up MDX configuration
+    - Install @next/mdx and related packages
+    - Configure next.config.js for MDX support
+    - Create MDX components mapping for custom styling
+    - Set up content directory structure (blog, guides, pages)
+    - _Requirements: 2.3, 2.5, 12.1_
+  - [x] 5.2 Create content loading utilities
+    - Write functions to read and parse MDX files
+    - Implement frontmatter parsing for metadata
+    - Create content filtering and sorting utilities
+    - Build slug generation and validation
+    - Add read time calculation function
+    - _Requirements: 2.1, 12.1, 12.3_
+  - [x] 5.3 Define TypeScript interfaces for content models
+    - Create BlogPost interface with all required fields
+    - Create Guide interface with difficulty and topics
+    - Create FAQ interface
+    - Create Author and Category interfaces
+    - Create SEOMetadata interface
+    - _Requirements: 2.1, 2.3, 8.2_
+
+- [x] 6. Build homepage
+  - [x] 6.1 Create homepage layout and hero section
+    - Build hero section with headline and call-to-action
+    - Add introductory text about food safety
+    - Implement responsive design for all screen sizes
+    - Add featured image or illustration
+    - _Requirements: 1.2, 3.1_
+  - [x] 6.2 Add "Latest News" section
+    - Display 3-4 most recent blog posts
+    - Use BlogCard components for display
+    - Add "View All" link to blog page
+    - Implement responsive grid layout
+    - _Requirements: 12.2_
+  - [x] 6.3 Add featured guides section
+    - Display 3-4 featured educational guides
+    - Use GuideCard components
+    - Add navigation to guides page
+    - _Requirements: 2.1_
+  - [x] 6.4 Add certifications showcase
+    - Display company certifications and credentials
+    - Use CertificationDisplay components
+    - Add visual trust indicators
+    - _Requirements: 7.2_
+
+- [ ] 7. Implement blog functionality
+  - [x] 7.1 Create blog listing page
+    - Build page to display all blog posts
+    - Implement BlogCard component for post previews
+    - Add category filtering UI
+    - Add tag filtering UI
+    - Implement pagination or infinite scroll
+    - Show publication dates and read times
+    - _Requirements: 2.3, 12.1, 12.3_
+  - [x] 7.2 Create BlogCard component
+    - Display title, excerpt, author, category, date
+    - Show featured image with proper aspect ratio
+    - Add read time indicator
+    - Implement hover effects
+    - Make entire card clickable
+    - _Requirements: 2.3, 12.1_
+  - [x] 7.3 Create individual blog post page
+    - Build dynamic route for [slug]
+    - Render MDX content with custom components
+    - Display post metadata (author, date, category, tags)
+    - Add featured image at top
+    - Implement responsive typography
+    - Add breadcrumb navigation
+    - _Requirements: 2.3, 2.5, 12.1_
+  - [x] 7.4 Add ShareButtons component to blog posts
+    - Create social sharing buttons (Twitter, Facebook, LinkedIn, WhatsApp)
+    - Implement copy link functionality
+    - Add native share API for mobile devices
+    - Style buttons consistently
+    - _Requirements: 11.5_
+  - [x] 7.5 Create sample blog content
+    - Write 3-5 sample blog posts in MDX format
+    - Include Turkish and English versions
+    - Add proper frontmatter metadata
+    - Include images and formatting examples
+    - Cover food safety topics (HACCP basics, hygiene tips, regulations)
+    - _Requirements: 2.3, 6.3_
+
+- [x] 8. Implement guides section
+  - [x] 8.1 Create guides listing page
+    - Display all educational guides
+    - Use GuideCard components
+    - Add difficulty level filtering
+    - Add topic/category filtering
+    - Implement search within guides
+    - _Requirements: 2.1, 2.4_
+  - [x] 8.2 Create GuideCard component
+    - Display title, description, difficulty level
+    - Show topics and related standards
+    - Add icon or visual indicator
+    - Implement hover effects
+    - _Requirements: 2.1_
+  - [x] 8.3 Create individual guide page
+    - Build dynamic route for guide [slug]
+    - Render MDX content with table of contents
+    - Display difficulty level and topics
+    - Add related standards badges (HACCP, ISO 22000)
+    - Show last updated date
+    - Add navigation between sections
+    - _Requirements: 2.1, 2.4, 2.5_
+  - [x] 8.4 Create sample guide content
+    - Write comprehensive HACCP guide in MDX
+    - Write ISO 22000 guide in MDX
+    - Create beginner's food safety guide
+    - Include Turkish and English versions
+    - Add diagrams and infographics where appropriate
+    - _Requirements: 2.1, 2.4, 6.3_
+
+- [x] 9. Build FAQ section
+  - [x] 9.1 Create FAQ page
+    - Build page layout with category navigation
+    - Implement category-based organization
+    - Add search functionality within FAQs
+    - Create responsive layout
+    - _Requirements: 2.2_
+  - [x] 9.2 Create FAQItem component
+    - Build accordion-style expandable items
+    - Implement smooth expand/collapse animations
+    - Add category badges
+    - Support keyboard navigation
+    - Add ARIA attributes for accessibility
+    - _Requirements: 2.2_
+  - [x] 9.3 Create FAQ data structure and content
+    - Define FAQ data format (JSON or MDX)
+    - Write 15-20 common food safety questions and answers
+    - Organize into categories (home safety, industrial, regulations, certifications)
+    - Create Turkish and English versions
+    - _Requirements: 2.2, 6.3_
+
+- [x] 10. Implement About page
+  - [x] 10.1 Create About page layout
+    - Build sections for vision, mission, history
+    - Add company story and values
+    - Implement responsive design
+    - _Requirements: 7.1_
+  - [x] 10.2 Add certifications section
+    - Display all food safety certifications
+    - Use CertificationDisplay component
+    - Add verification links where available
+    - Show issuer and date information
+    - _Requirements: 7.2_
+  - [x] 10.3 Add team section
+    - Display team member profiles
+    - Show qualifications and roles
+    - Add avatar images
+    - Include social links for team members
+    - _Requirements: 7.5_
+  - [x] 10.4 Add partners section
+    - Display partner organizations
+    - Show collaboration details
+    - Add partner logos
+    - _Requirements: 7.3_
+
+- [ ] 11. Build contact form and functionality
+  - [ ] 11.1 Create ContactForm component
+    - Build form with fields (name, email, subject, message)
+    - Integrate React Hook Form for form management
+    - Add Zod schema for validation
+    - Implement inline validation error display
+    - Add consent checkbox for data processing
+    - Style form fields consistently
+    - Ensure 44x44px touch targets for mobile
+    - _Requirements: 5.1, 5.2, 5.3, 10.1_
+  - [ ] 11.2 Create contact API route
+    - Build /api/contact endpoint
+    - Implement server-side validation
+    - Integrate email sending service (Resend, SendGrid, or Nodemailer)
+    - Add rate limiting to prevent spam
+    - Return appropriate success/error responses
+    - _Requirements: 5.5_
+  - [ ] 11.3 Add form submission handling
+    - Implement form submission logic in ContactForm
+    - Show loading state during submission
+    - Display success message after submission
+    - Handle and display error messages
+    - Clear form after successful submission
+    - _Requirements: 5.3, 5.4_
+  - [ ] 11.4 Create contact page
+    - Build page with ContactForm component
+    - Add contact information display (email, phone, address)
+    - Add map or location information
+    - Include office hours if applicable
+    - _Requirements: 5.1, 7.4_
+
+- [ ] 12. Implement search functionality
+  - [x] 12.1 Create search infrastructure
+    - Implement Fuse.js for client-side search
+    - Create search index from all content (blog, guides, FAQ)
+    - Build search utility functions
+    - Implement keyword highlighting in results
+    - _Requirements: 4.1, 4.3, 4.4_
+  - [x] 12.2 Create SearchBar component
+    - Build search input with icon
+    - Add real-time search suggestions
+    - Implement debounced search queries
+    - Show loading indicator during search
+    - Make accessible from all pages (in Header)
+    - _Requirements: 4.1_
+  - [x] 12.3 Create search results page
+    - Build page to display search results
+    - Show results with context snippets
+    - Highlight matched keywords
+    - Group results by type (blog, guide, FAQ, page)
+    - Display "no results" message with suggestions
+    - Add search query in page title
+    - _Requirements: 4.2, 4.3, 4.4, 4.5_
+  - [x] 12.4 Add search API route
+    - Create /api/search endpoint
+    - Implement server-side search logic
+    - Return results within 2 seconds
+    - Add caching for common queries
+    - _Requirements: 4.2_
+
+- [ ] 13. Implement interactive features
+  - [ ] 13.1 Create Quiz component
+    - Build quiz UI with question display
+    - Implement multiple choice answer selection
+    - Add progress indicator
+    - Show results with score and explanations
+    - Add restart functionality
+    - _Requirements: 11.1, 11.2_
+  - [ ] 13.2 Create sample quiz content
+    - Write food safety quiz with 10-15 questions
+    - Include correct answers and explanations
+    - Create Turkish and English versions
+    - Cover various difficulty levels
+    - _Requirements: 11.1, 11.2_
+  - [ ] 13.3 Add quiz to guides or dedicated page
+    - Integrate Quiz component into relevant guide pages
+    - Create standalone quiz page if needed
+    - Add quiz navigation and discovery
+    - _Requirements: 11.1_
+
+- [ ] 14. Implement SEO optimization
+  - [ ] 14.1 Create SEO metadata utilities
+    - Build function to generate page metadata
+    - Create default SEO configuration
+    - Implement Open Graph tags
+    - Add Twitter Card tags
+    - Generate canonical URLs
+    - _Requirements: 8.2, 8.4_
+  - [ ] 14.2 Add metadata to all pages
+    - Add metadata to homepage
+    - Add metadata to blog pages (listing and posts)
+    - Add metadata to guide pages
+    - Add metadata to FAQ, About, Contact pages
+    - Ensure unique titles and descriptions
+    - _Requirements: 8.2_
+  - [ ] 14.3 Implement structured data (JSON-LD)
+    - Add Organization schema to homepage
+    - Add Article schema to blog posts
+    - Add FAQPage schema to FAQ page
+    - Add BreadcrumbList schema where applicable
+    - _Requirements: 8.4_
+  - [ ] 14.4 Create sitemap generation
+    - Build sitemap.xml generation logic
+    - Include all static and dynamic pages
+    - Add lastmod dates for content
+    - Configure sitemap in robots.txt
+    - _Requirements: 8.3_
+  - [ ] 14.5 Create robots.txt
+    - Configure crawler access rules
+    - Add sitemap reference
+    - Set up proper disallow rules
+    - _Requirements: 8.3_
+  - [ ] 14.6 Optimize images for SEO
+    - Add alt text to all images
+    - Implement Next.js Image component throughout
+    - Configure image optimization settings
+    - Use WebP format where possible
+    - _Requirements: 8.5_
+
+- [ ] 15. Implement privacy and compliance features
+  - [ ] 15.1 Create CookieConsent component
+    - Build cookie consent banner
+    - Add granular consent options (necessary, analytics, marketing)
+    - Implement consent preference storage
+    - Add settings modal for managing preferences
+    - Show banner only on first visit
+    - _Requirements: 10.1, 10.4_
+  - [ ] 15.2 Create legal pages
+    - Create Privacy Policy page with KVKK/GDPR compliance information
+    - Create Terms of Service page
+    - Create Cookie Policy page
+    - Write content in Turkish and English
+    - Add last updated dates
+    - _Requirements: 10.2, 10.3_
+  - [ ] 15.3 Implement consent management
+    - Create utility functions for checking consent
+    - Conditionally load analytics based on consent
+    - Store consent preferences in localStorage
+    - Add consent revocation functionality
+    - _Requirements: 9.5, 10.1_
+
+- [ ] 16. Integrate analytics
+  - [ ] 16.1 Set up Google Analytics 4
+    - Install GA4 tracking code
+    - Configure measurement ID
+    - Implement pageview tracking
+    - Add event tracking for key interactions
+    - _Requirements: 9.1, 9.2_
+  - [ ] 16.2 Create analytics utilities
+    - Build helper functions for tracking events
+    - Implement custom event tracking (search, form submissions, downloads)
+    - Add user interaction tracking
+    - Respect cookie consent preferences
+    - _Requirements: 9.2, 9.3, 9.4, 9.5_
+  - [ ] 16.3 Add analytics to key pages and components
+    - Track blog post views
+    - Track guide views
+    - Track search queries
+    - Track contact form submissions
+    - Track language switches
+    - _Requirements: 9.2, 9.3_
+
+- [ ] 17. Implement error pages and handling
+  - [ ] 17.1 Create custom 404 page
+    - Build not-found.tsx with helpful content
+    - Add search functionality
+    - Include links to popular pages
+    - Add breadcrumb navigation
+    - Implement in both languages
+    - _Requirements: 1.1_
+  - [ ] 17.2 Create custom error page
+    - Build error.tsx for 500 errors
+    - Add friendly error message
+    - Include contact information
+    - Add retry functionality
+    - _Requirements: 1.1_
+  - [ ] 17.3 Add loading states
+    - Create loading.tsx for page transitions
+    - Implement skeleton screens for content
+    - Add loading spinners for async operations
+    - Ensure smooth transitions
+    - _Requirements: 3.2_
+
+- [ ] 18. Optimize performance
+  - [ ] 18.1 Implement code splitting
+    - Use dynamic imports for heavy components
+    - Lazy load below-the-fold content
+    - Split routes appropriately
+    - Optimize bundle size
+    - _Requirements: 3.2_
+  - [ ] 18.2 Optimize images
+    - Convert images to WebP format
+    - Implement lazy loading for images
+    - Use appropriate image sizes for different viewports
+    - Add blur placeholders
+    - _Requirements: 3.2, 8.5_
+  - [ ] 18.3 Configure caching strategies
+    - Set up static asset caching
+    - Configure API response caching
+    - Implement stale-while-revalidate for content
+    - _Requirements: 3.2_
+
+- [ ] 19. Ensure responsive design and accessibility
+  - [ ] 19.1 Test and fix responsive layouts
+    - Test all pages at breakpoints (320px, 640px, 768px, 1024px, 1280px, 2560px)
+    - Fix any layout issues on mobile devices
+    - Ensure touch targets are 44x44px minimum
+    - Test mobile navigation
+    - _Requirements: 3.1, 3.3, 3.4, 3.5_
+  - [ ] 19.2 Implement accessibility features
+    - Add ARIA labels to interactive elements
+    - Ensure keyboard navigation works throughout
+    - Add skip-to-content link
+    - Ensure proper heading hierarchy
+    - Test with screen readers
+    - Verify color contrast ratios
+    - _Requirements: 1.1, 8.1_
+  - [ ] 19.3 Add focus management
+    - Implement visible focus indicators
+    - Manage focus for modals and drawers
+    - Ensure logical tab order
+    - _Requirements: 3.4_
+
+- [ ] 20. Final integration and polish
+  - [ ] 20.1 Review and refine all translations
+    - Verify all UI text is translated
+    - Check for translation consistency
+    - Ensure proper language fallbacks
+    - Test language switching on all pages
+    - _Requirements: 6.3, 6.5_
+  - [ ] 20.2 Add final content
+    - Complete all sample blog posts
+    - Finalize guide content
+    - Complete FAQ entries
+    - Add About page content
+    - Add real certification information
+    - _Requirements: 2.1, 2.2, 2.3, 7.1, 7.2_
+  - [ ] 20.3 Configure deployment
+    - Set up Vercel project or alternative hosting
+    - Configure environment variables
+    - Set up custom domain if available
+    - Configure HTTPS
+    - Test production build
+    - _Requirements: 10.5_
+  - [ ] 20.4 Perform final testing
+    - Test all user flows end-to-end
+    - Verify all forms work correctly
+    - Test search functionality thoroughly
+    - Verify analytics tracking
+    - Test on multiple browsers and devices
+    - Check performance metrics (LCP, FID, CLS)
+    - _Requirements: 3.2, 3.5, 4.2, 5.4, 9.2_

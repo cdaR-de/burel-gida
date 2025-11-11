@@ -1,0 +1,77 @@
+@import '@/styles/variables';
+
+.textareaWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  
+  &.fullWidth {
+    width: 100%;
+  }
+}
+
+.label {
+  font-size: $text-sm;
+  font-weight: 500;
+  color: $color-neutral-900;
+  
+  .required {
+    color: $color-error;
+    margin-left: 2px;
+  }
+}
+
+.textarea {
+  padding: $spacing-sm $spacing-md;
+  font-size: $text-base;
+  font-family: $font-primary;
+  border: 2px solid $color-neutral-100;
+  border-radius: 6px;
+  background-color: white;
+  color: $color-neutral-900;
+  transition: all 0.2s ease;
+  min-height: 120px;
+  resize: vertical;
+  
+  &:hover:not(:disabled) {
+    border-color: $color-neutral-500;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: $color-primary-500;
+    box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.1);
+  }
+  
+  &:disabled {
+    background-color: $color-neutral-50;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  &.error {
+    border-color: $color-error;
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.1);
+    }
+  }
+  
+  &.fullWidth {
+    width: 100%;
+  }
+  
+  &::placeholder {
+    color: $color-neutral-500;
+  }
+}
+
+.errorText {
+  font-size: $text-sm;
+  color: $color-error;
+}
+
+.helperText {
+  font-size: $text-sm;
+  color: $color-neutral-500;
+}

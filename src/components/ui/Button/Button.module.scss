@@ -1,0 +1,93 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  font-family: $font-primary;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 2px solid transparent;
+  white-space: nowrap;
+  
+  &:focus-visible {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+  }
+  
+  &.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+}
+
+// Variants
+.primary {
+  background-color: $color-primary-500;
+  color: white;
+  
+  &:hover:not(.disabled) {
+    background-color: $color-primary-700;
+  }
+  
+  &:active:not(.disabled) {
+    background-color: $color-primary-900;
+  }
+}
+
+.secondary {
+  background-color: $color-secondary-500;
+  color: white;
+  
+  &:hover:not(.disabled) {
+    background-color: $color-secondary-700;
+  }
+  
+  &:active:not(.disabled) {
+    background-color: $color-secondary-900;
+  }
+}
+
+.outline {
+  background-color: transparent;
+  color: $color-primary-500;
+  border-color: $color-primary-500;
+  
+  &:hover:not(.disabled) {
+    background-color: $color-primary-50;
+    border-color: $color-primary-700;
+    color: $color-primary-700;
+  }
+  
+  &:active:not(.disabled) {
+    background-color: $color-primary-100;
+  }
+}
+
+// Sizes
+.small {
+  padding: $spacing-xs $spacing-md;
+  font-size: $text-sm;
+  min-height: 32px;
+}
+
+.medium {
+  padding: $spacing-sm $spacing-lg;
+  font-size: $text-base;
+  min-height: 44px; // Touch-friendly
+}
+
+.large {
+  padding: $spacing-md $spacing-xl;
+  font-size: $text-lg;
+  min-height: 52px;
+}
+
+.fullWidth {
+  width: 100%;
+}

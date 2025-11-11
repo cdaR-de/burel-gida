@@ -1,0 +1,122 @@
+[
+  {
+    "id": "home-1",
+    "question": "What is the safest temperature to store food in the refrigerator?",
+    "answer": "The refrigerator should be kept at or below 4°C (40°F) to slow bacterial growth. The freezer should be at -18°C (0°F) or below. Use a refrigerator thermometer to ensure proper temperature.",
+    "category": "Home Safety"
+  },
+  {
+    "id": "home-2",
+    "question": "How long can I safely keep leftovers in the refrigerator?",
+    "answer": "Most cooked leftovers can be safely stored in the refrigerator for 3-4 days. Make sure to store them in airtight containers and reheat to at least 75°C (165°F) before consuming.",
+    "category": "Home Safety"
+  },
+  {
+    "id": "home-3",
+    "question": "What is the danger zone for food temperatures?",
+    "answer": "The danger zone is between 5°C and 60°C (41°F and 140°F), where bacteria multiply rapidly. Food should not be left in this temperature range for more than 2 hours (1 hour if the temperature is above 32°C/90°F).",
+    "category": "Home Safety"
+  },
+  {
+    "id": "home-4",
+    "question": "How should I properly wash fruits and vegetables?",
+    "answer": "Rinse fresh fruits and vegetables under running water before eating, cutting, or cooking. Use a clean vegetable brush for firm produce. Do not use soap, detergent, or commercial produce washes.",
+    "category": "Home Safety"
+  },
+  {
+    "id": "home-5",
+    "question": "Can I refreeze food that has been thawed?",
+    "answer": "Raw food that has been properly thawed in the refrigerator can be refrozen, though quality may decrease. Never refreeze food that has been thawed at room temperature or shows signs of spoilage.",
+    "category": "Home Safety"
+  },
+  {
+    "id": "industrial-1",
+    "question": "What is HACCP and why is it important?",
+    "answer": "HACCP (Hazard Analysis and Critical Control Points) is a systematic preventive approach to food safety. It identifies physical, chemical, and biological hazards in production processes and establishes critical control points to prevent, eliminate, or reduce hazards to safe levels.",
+    "category": "Industrial"
+  },
+  {
+    "id": "industrial-2",
+    "question": "How often should food contact surfaces be cleaned and sanitized?",
+    "answer": "Food contact surfaces should be cleaned and sanitized after each use, when switching between different food types (especially from raw to ready-to-eat foods), and at regular intervals during continuous use (typically every 4 hours).",
+    "category": "Industrial"
+  },
+  {
+    "id": "industrial-3",
+    "question": "What are the key principles of Good Manufacturing Practices (GMP)?",
+    "answer": "GMP includes proper facility design and maintenance, equipment sanitation, personnel hygiene, process controls, quality assurance systems, and proper documentation. These practices ensure products are consistently produced and controlled according to quality standards.",
+    "category": "Industrial"
+  },
+  {
+    "id": "industrial-4",
+    "question": "What is cross-contamination and how can it be prevented?",
+    "answer": "Cross-contamination occurs when harmful bacteria or allergens transfer from one food or surface to another. Prevent it by using separate cutting boards for raw and cooked foods, proper handwashing, cleaning equipment between uses, and storing raw foods below ready-to-eat items.",
+    "category": "Industrial"
+  },
+  {
+    "id": "industrial-5",
+    "question": "How should food handlers maintain personal hygiene?",
+    "answer": "Food handlers must wash hands frequently, wear clean uniforms and hair restraints, keep nails trimmed and clean, avoid wearing jewelry, cover wounds, and stay home when ill. Regular health checks and hygiene training are essential.",
+    "category": "Industrial"
+  },
+  {
+    "id": "regulations-1",
+    "question": "What is ISO 22000 certification?",
+    "answer": "ISO 22000 is an international standard that specifies requirements for a food safety management system. It combines HACCP principles with prerequisite programs and can be applied to any organization in the food chain, from farm to fork.",
+    "category": "Regulations"
+  },
+  {
+    "id": "regulations-2",
+    "question": "What are the main food safety regulations in Turkey?",
+    "answer": "Turkey's food safety is regulated by the Turkish Food Codex, which aligns with EU regulations. Key regulations cover food hygiene, labeling, additives, contaminants, and specific product categories. The Ministry of Agriculture and Forestry oversees enforcement.",
+    "category": "Regulations"
+  },
+  {
+    "id": "regulations-3",
+    "question": "What is required for food product labeling?",
+    "answer": "Food labels must include product name, ingredients list (in descending order by weight), allergen information, net quantity, best before or use by date, storage conditions, manufacturer details, and nutritional information (for most products).",
+    "category": "Regulations"
+  },
+  {
+    "id": "regulations-4",
+    "question": "What are the major food allergens that must be declared?",
+    "answer": "The 14 major allergens that must be declared are: cereals containing gluten, crustaceans, eggs, fish, peanuts, soybeans, milk, nuts, celery, mustard, sesame seeds, sulfur dioxide/sulfites, lupin, and mollusks.",
+    "category": "Regulations"
+  },
+  {
+    "id": "regulations-5",
+    "question": "How often should food businesses be inspected?",
+    "answer": "Inspection frequency depends on the risk category of the business. High-risk establishments (e.g., meat processing) may be inspected monthly or quarterly, while lower-risk businesses may be inspected annually or biennially.",
+    "category": "Regulations"
+  },
+  {
+    "id": "certifications-1",
+    "question": "What is the difference between ISO 22000 and FSSC 22000?",
+    "answer": "ISO 22000 is the base food safety management standard. FSSC 22000 builds on ISO 22000 by adding additional requirements from technical specifications and is recognized by the Global Food Safety Initiative (GFSI).",
+    "category": "Certifications"
+  },
+  {
+    "id": "certifications-2",
+    "question": "How long does it take to implement a HACCP system?",
+    "answer": "Implementation typically takes 3-6 months depending on facility size and complexity. This includes team formation, hazard analysis, establishing critical control points, documentation, staff training, and validation of the system.",
+    "category": "Certifications"
+  },
+  {
+    "id": "certifications-3",
+    "question": "What is BRC certification and who needs it?",
+    "answer": "BRC (Brand Reputation through Compliance) is a GFSI-recognized food safety standard. It's often required by UK and international retailers for their suppliers. It covers HACCP, quality management systems, factory environmental standards, and product control.",
+    "category": "Certifications"
+  },
+  {
+    "id": "certifications-4",
+    "question": "Do small food businesses need food safety certification?",
+    "answer": "While certification may not be legally required for all small businesses, implementing food safety systems is mandatory. Certification demonstrates compliance, builds customer trust, and may be required by larger buyers or for export.",
+    "category": "Certifications"
+  },
+  {
+    "id": "certifications-5",
+    "question": "How often must food safety certifications be renewed?",
+    "answer": "Most food safety certifications (ISO 22000, FSSC 22000, BRC) require annual surveillance audits and full recertification every three years. Maintaining certification requires continuous compliance and addressing any non-conformities found during audits.",
+    "category": "Certifications"
+  }
+]

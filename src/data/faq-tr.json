@@ -1,0 +1,122 @@
+[
+  {
+    "id": "home-1",
+    "question": "Gıdaları buzdolabında saklamak için en güvenli sıcaklık nedir?",
+    "answer": "Buzdolabı, bakteri üremesini yavaşlatmak için 4°C (40°F) veya altında tutulmalıdır. Dondurucunun sıcaklığı -18°C (0°F) veya altında olmalıdır. Doğru sıcaklığı sağlamak için buzdolabı termometresi kullanın.",
+    "category": "Ev Güvenliği"
+  },
+  {
+    "id": "home-2",
+    "question": "Artık yemekleri buzdolabında ne kadar süre güvenle saklayabilirim?",
+    "answer": "Pişmiş artık yemeklerin çoğu buzdolabında 3-4 gün güvenle saklanabilir. Hava geçirmez kaplarda sakladığınızdan emin olun ve tüketmeden önce en az 75°C'ye (165°F) ısıtın.",
+    "category": "Ev Güvenliği"
+  },
+  {
+    "id": "home-3",
+    "question": "Gıda sıcaklıkları için tehlike bölgesi nedir?",
+    "answer": "Tehlike bölgesi, bakterilerin hızla çoğaldığı 5°C ile 60°C (41°F ile 140°F) arasıdır. Gıda bu sıcaklık aralığında 2 saatten fazla bırakılmamalıdır (sıcaklık 32°C/90°F'nin üzerindeyse 1 saat).",
+    "category": "Ev Güvenliği"
+  },
+  {
+    "id": "home-4",
+    "question": "Meyve ve sebzeleri nasıl düzgün şekilde yıkamalıyım?",
+    "answer": "Taze meyve ve sebzeleri yemeden, kesmeden veya pişirmeden önce akan su altında durulayın. Sert ürünler için temiz bir sebze fırçası kullanın. Sabun, deterjan veya ticari ürün yıkama maddeleri kullanmayın.",
+    "category": "Ev Güvenliği"
+  },
+  {
+    "id": "home-5",
+    "question": "Çözülmüş gıdayı tekrar dondurabilir miyim?",
+    "answer": "Buzdolabında düzgün şekilde çözülmüş çiğ gıda tekrar dondurulabilir, ancak kalite düşebilir. Oda sıcaklığında çözülmüş veya bozulma belirtileri gösteren gıdaları asla tekrar dondurmayın.",
+    "category": "Ev Güvenliği"
+  },
+  {
+    "id": "industrial-1",
+    "question": "HACCP nedir ve neden önemlidir?",
+    "answer": "HACCP (Tehlike Analizi ve Kritik Kontrol Noktaları), gıda güvenliğine sistematik ve önleyici bir yaklaşımdır. Üretim süreçlerindeki fiziksel, kimyasal ve biyolojik tehlikeleri tanımlar ve tehlikeleri önlemek, ortadan kaldırmak veya güvenli seviyelere indirmek için kritik kontrol noktaları belirler.",
+    "category": "Endüstriyel"
+  },
+  {
+    "id": "industrial-2",
+    "question": "Gıda ile temas eden yüzeyler ne sıklıkla temizlenmeli ve dezenfekte edilmelidir?",
+    "answer": "Gıda ile temas eden yüzeyler her kullanımdan sonra, farklı gıda türleri arasında geçiş yaparken (özellikle çiğden tüketime hazır gıdalara) ve sürekli kullanım sırasında düzenli aralıklarla (genellikle her 4 saatte bir) temizlenmeli ve dezenfekte edilmelidir.",
+    "category": "Endüstriyel"
+  },
+  {
+    "id": "industrial-3",
+    "question": "İyi Üretim Uygulamalarının (GMP) temel ilkeleri nelerdir?",
+    "answer": "GMP, uygun tesis tasarımı ve bakımı, ekipman sanitasyonu, personel hijyeni, süreç kontrolleri, kalite güvence sistemleri ve uygun dokümantasyonu içerir. Bu uygulamalar, ürünlerin kalite standartlarına göre tutarlı bir şekilde üretilmesini ve kontrol edilmesini sağlar.",
+    "category": "Endüstriyel"
+  },
+  {
+    "id": "industrial-4",
+    "question": "Çapraz bulaşma nedir ve nasıl önlenebilir?",
+    "answer": "Çapraz bulaşma, zararlı bakterilerin veya alerjenlerin bir gıdadan veya yüzeyden diğerine geçmesidir. Çiğ ve pişmiş gıdalar için ayrı kesme tahtaları kullanarak, uygun el yıkama, kullanımlar arasında ekipman temizliği ve çiğ gıdaları tüketime hazır ürünlerin altında saklayarak önlenebilir.",
+    "category": "Endüstriyel"
+  },
+  {
+    "id": "industrial-5",
+    "question": "Gıda çalışanları kişisel hijyeni nasıl korumalıdır?",
+    "answer": "Gıda çalışanları sık sık el yıkamalı, temiz üniforma ve saç koruyucu takmalı, tırnakları kısa ve temiz tutmalı, takı takmamalı, yaraları kapatmalı ve hasta olduklarında evde kalmalıdır. Düzenli sağlık kontrolleri ve hijyen eğitimi esastır.",
+    "category": "Endüstriyel"
+  },
+  {
+    "id": "regulations-1",
+    "question": "ISO 22000 sertifikası nedir?",
+    "answer": "ISO 22000, bir gıda güvenliği yönetim sistemi için gereksinimleri belirten uluslararası bir standarttır. HACCP ilkelerini ön koşul programlarıyla birleştirir ve çiftlikten çatala kadar gıda zincirindeki herhangi bir organizasyona uygulanabilir.",
+    "category": "Mevzuat"
+  },
+  {
+    "id": "regulations-2",
+    "question": "Türkiye'deki ana gıda güvenliği düzenlemeleri nelerdir?",
+    "answer": "Türkiye'de gıda güvenliği, AB düzenlemeleriyle uyumlu olan Türk Gıda Kodeksi tarafından düzenlenir. Ana düzenlemeler gıda hijyeni, etiketleme, katkı maddeleri, kirleticiler ve belirli ürün kategorilerini kapsar. Tarım ve Orman Bakanlığı uygulamayı denetler.",
+    "category": "Mevzuat"
+  },
+  {
+    "id": "regulations-3",
+    "question": "Gıda ürünü etiketlemesi için neler gereklidir?",
+    "answer": "Gıda etiketleri ürün adı, içerik listesi (ağırlığa göre azalan sırada), alerjen bilgisi, net miktar, son kullanma veya tüketim tarihi, saklama koşulları, üretici bilgileri ve besin bilgilerini (çoğu ürün için) içermelidir.",
+    "category": "Mevzuat"
+  },
+  {
+    "id": "regulations-4",
+    "question": "Beyan edilmesi gereken başlıca gıda alerjenleri nelerdir?",
+    "answer": "Beyan edilmesi gereken 14 ana alerjen şunlardır: glüten içeren tahıllar, kabuklu deniz ürünleri, yumurta, balık, yer fıstığı, soya fasulyesi, süt, sert kabuklu meyveler, kereviz, hardal, susam tohumu, kükürt dioksit/sülfitler, lupin ve yumuşakçalar.",
+    "category": "Mevzuat"
+  },
+  {
+    "id": "regulations-5",
+    "question": "Gıda işletmeleri ne sıklıkla denetlenmelidir?",
+    "answer": "Denetim sıklığı işletmenin risk kategorisine bağlıdır. Yüksek riskli tesisler (örn. et işleme) aylık veya üç aylık denetlenebilirken, düşük riskli işletmeler yıllık veya iki yılda bir denetlenebilir.",
+    "category": "Mevzuat"
+  },
+  {
+    "id": "certifications-1",
+    "question": "ISO 22000 ile FSSC 22000 arasındaki fark nedir?",
+    "answer": "ISO 22000 temel gıda güvenliği yönetim standardıdır. FSSC 22000, teknik şartnamelerden ek gereksinimler ekleyerek ISO 22000'in üzerine inşa edilir ve Küresel Gıda Güvenliği Girişimi (GFSI) tarafından tanınır.",
+    "category": "Sertifikasyonlar"
+  },
+  {
+    "id": "certifications-2",
+    "question": "Bir HACCP sistemini uygulamak ne kadar sürer?",
+    "answer": "Uygulama, tesisin büyüklüğüne ve karmaşıklığına bağlı olarak genellikle 3-6 ay sürer. Bu, ekip oluşturma, tehlike analizi, kritik kontrol noktalarının belirlenmesi, dokümantasyon, personel eğitimi ve sistemin doğrulanmasını içerir.",
+    "category": "Sertifikasyonlar"
+  },
+  {
+    "id": "certifications-3",
+    "question": "BRC sertifikası nedir ve kimin ihtiyacı vardır?",
+    "answer": "BRC (Uyumluluk Yoluyla Marka İtibarı), GFSI tarafından tanınan bir gıda güvenliği standardıdır. Genellikle İngiltere ve uluslararası perakendeciler tarafından tedarikçileri için gereklidir. HACCP, kalite yönetim sistemleri, fabrika çevre standartları ve ürün kontrolünü kapsar.",
+    "category": "Sertifikasyonlar"
+  },
+  {
+    "id": "certifications-4",
+    "question": "Küçük gıda işletmelerinin gıda güvenliği sertifikasına ihtiyacı var mı?",
+    "answer": "Sertifikasyon tüm küçük işletmeler için yasal olarak gerekli olmayabilir, ancak gıda güvenliği sistemlerinin uygulanması zorunludur. Sertifikasyon uyumluluğu gösterir, müşteri güveni oluşturur ve daha büyük alıcılar veya ihracat için gerekli olabilir.",
+    "category": "Sertifikasyonlar"
+  },
+  {
+    "id": "certifications-5",
+    "question": "Gıda güvenliği sertifikaları ne sıklıkla yenilenmelidir?",
+    "answer": "Çoğu gıda güvenliği sertifikası (ISO 22000, FSSC 22000, BRC) yıllık gözetim denetimleri ve her üç yılda bir tam yeniden sertifikasyon gerektirir. Sertifikasyonu sürdürmek, sürekli uyumluluk ve denetimler sırasında bulunan uygunsuzlukların ele alınmasını gerektirir.",
+    "category": "Sertifikasyonlar"
+  }
+]

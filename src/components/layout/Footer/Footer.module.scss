@@ -1,0 +1,178 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.footer {
+  background-color: $color-neutral-900;
+  color: $color-neutral-100;
+  padding: $spacing-3xl 0 $spacing-lg;
+  margin-top: auto;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+
+  @include desktop {
+    padding: 0 $spacing-xl;
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-2xl;
+  margin-bottom: $spacing-2xl;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.sectionTitle {
+  @include heading-style;
+  font-size: $text-lg;
+  color: white;
+  margin: 0;
+}
+
+.description {
+  @include body-text;
+  font-size: $text-sm;
+  color: $color-neutral-100;
+  line-height: 1.6;
+  margin: 0;
+}
+
+// Social Links
+.socialLinks {
+  display: flex;
+  gap: $spacing-md;
+  margin-top: $spacing-sm;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: $color-neutral-100;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: $color-primary-500;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+// Link Lists
+.linkList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.link {
+  color: $color-neutral-100;
+  text-decoration: none;
+  font-size: $text-sm;
+  transition: color 0.2s ease;
+  display: inline-block;
+
+  &:hover {
+    color: $color-primary-500;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+// Contact List
+.contactList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+
+  li {
+    font-size: $text-sm;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  strong {
+    color: white;
+    font-weight: 600;
+  }
+
+  span {
+    color: $color-neutral-100;
+  }
+}
+
+.contactLink {
+  color: $color-neutral-100;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-primary-500;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}
+
+// Bottom Bar
+.bottomBar {
+  padding-top: $spacing-xl;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+
+  @include desktop {
+    text-align: left;
+  }
+}
+
+.copyright {
+  font-size: $text-sm;
+  color: $color-neutral-500;
+  margin: 0;
+}

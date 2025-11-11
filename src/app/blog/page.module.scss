@@ -1,0 +1,150 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.blogPage {
+  min-height: 100vh;
+  background-color: $color-neutral-50;
+  padding: $spacing-3xl 0;
+
+  @include mobile {
+    padding: $spacing-xl 0;
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @include mobile {
+    padding: 0 $spacing-md;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-3xl;
+
+  @include mobile {
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.title {
+  @include heading-style;
+  font-size: $text-5xl;
+  color: $color-neutral-900;
+  margin-bottom: $spacing-md;
+
+  @include mobile {
+    font-size: $text-3xl;
+  }
+}
+
+.description {
+  font-size: $text-lg;
+  color: $color-neutral-600;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @include mobile {
+    font-size: $text-base;
+  }
+}
+
+.filters {
+  display: flex;
+  gap: $spacing-lg;
+  margin-bottom: $spacing-2xl;
+  padding: $spacing-lg;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-md;
+    padding: $spacing-md;
+  }
+}
+
+.filterGroup {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.filterLabel {
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $color-neutral-700;
+}
+
+.filterSelect {
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $color-neutral-300;
+  border-radius: 6px;
+  font-size: $text-base;
+  color: $color-neutral-900;
+  background-color: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: $color-primary-500;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary-500;
+    box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.1);
+  }
+}
+
+.postsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: $spacing-xl;
+  margin-bottom: $spacing-3xl;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
+
+.pagination {
+  @include flex-center;
+  gap: $spacing-lg;
+  padding: $spacing-xl 0;
+}
+
+.paginationButton {
+  padding: $spacing-sm $spacing-lg;
+  background-color: $color-primary-500;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: $text-base;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background-color: $color-primary-700;
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    background-color: $color-neutral-300;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+.pageInfo {
+  font-size: $text-base;
+  color: $color-neutral-700;
+  font-weight: 500;
+}

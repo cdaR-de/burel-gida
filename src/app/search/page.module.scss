@@ -1,0 +1,238 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-2xl $spacing-lg;
+
+  @include mobile {
+    padding: $spacing-xl $spacing-md;
+  }
+}
+
+.header {
+  margin-bottom: $spacing-2xl;
+}
+
+.title {
+  @include heading-style;
+  font-size: $text-3xl;
+  color: $color-neutral-900;
+  margin-bottom: $spacing-sm;
+
+  @include mobile {
+    font-size: $text-2xl;
+  }
+}
+
+.meta {
+  font-size: $text-base;
+  color: $color-neutral-500;
+}
+
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-3xl 0;
+  gap: $spacing-md;
+
+  p {
+    font-size: $text-lg;
+    color: $color-neutral-500;
+  }
+}
+
+.error {
+  padding: $spacing-lg;
+  background-color: rgba($color-error, 0.1);
+  border: 1px solid $color-error;
+  border-radius: 8px;
+  color: $color-error;
+  text-align: center;
+}
+
+.emptyState,
+.noResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: $spacing-3xl $spacing-lg;
+  text-align: center;
+
+  h2 {
+    @include heading-style;
+    font-size: $text-2xl;
+    color: $color-neutral-900;
+    margin-top: $spacing-lg;
+    margin-bottom: $spacing-sm;
+  }
+
+  p {
+    font-size: $text-lg;
+    color: $color-neutral-500;
+    max-width: 500px;
+  }
+}
+
+.emptyIcon,
+.noResultsIcon {
+  color: $color-neutral-300;
+}
+
+.suggestions {
+  margin-top: $spacing-xl;
+  text-align: left;
+  max-width: 500px;
+
+  h3 {
+    @include heading-style;
+    font-size: $text-lg;
+    color: $color-neutral-900;
+    margin-bottom: $spacing-md;
+  }
+
+  ul {
+    list-style: disc;
+    padding-left: $spacing-lg;
+    color: $color-neutral-700;
+
+    li {
+      margin-bottom: $spacing-xs;
+
+      a {
+        color: $color-primary-500;
+        text-decoration: underline;
+
+        &:hover {
+          color: $color-primary-700;
+        }
+      }
+    }
+  }
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-2xl;
+}
+
+.resultSection {
+  .sectionTitle {
+    @include heading-style;
+    font-size: $text-xl;
+    color: $color-neutral-900;
+    margin-bottom: $spacing-lg;
+    padding-bottom: $spacing-sm;
+    border-bottom: 2px solid $color-neutral-100;
+  }
+}
+
+.resultList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.resultItem {
+  padding: $spacing-lg;
+  background-color: white;
+  border: 1px solid $color-neutral-100;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: $color-primary-500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  }
+}
+
+.resultHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+}
+
+.category {
+  font-size: $text-sm;
+  color: $color-neutral-500;
+  text-transform: capitalize;
+}
+
+.resultLink {
+  text-decoration: none;
+  color: inherit;
+
+  &:hover .resultTitle {
+    color: $color-primary-500;
+  }
+}
+
+.resultTitle {
+  @include heading-style;
+  font-size: $text-xl;
+  color: $color-neutral-900;
+  margin-bottom: $spacing-sm;
+  transition: color 0.2s ease;
+
+  // Highlight styling
+  :global(mark) {
+    background-color: rgba($color-primary-500, 0.2);
+    color: $color-primary-900;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  @include mobile {
+    font-size: $text-lg;
+  }
+}
+
+.resultExcerpt {
+  font-size: $text-base;
+  color: $color-neutral-700;
+  line-height: 1.6;
+  margin-bottom: $spacing-md;
+
+  // Highlight styling
+  :global(mark) {
+    background-color: rgba($color-primary-500, 0.2);
+    color: $color-primary-900;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-weight: 500;
+  }
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px $spacing-sm;
+  font-size: $text-xs;
+  color: $color-neutral-700;
+  background-color: $color-neutral-50;
+  border: 1px solid $color-neutral-100;
+  border-radius: 4px;
+}
+
+// Responsive adjustments
+@include mobile {
+  .resultItem {
+    padding: $spacing-md;
+  }
+
+  .resultHeader {
+    flex-wrap: wrap;
+  }
+}

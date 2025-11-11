@@ -1,0 +1,360 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.aboutPage {
+  min-height: 100vh;
+}
+
+.hero {
+  background: linear-gradient(135deg, $color-primary-500 0%, $color-primary-700 100%);
+  color: white;
+  padding: $spacing-3xl $spacing-md;
+  text-align: center;
+
+  @include desktop {
+    padding: 5rem $spacing-md;
+  }
+
+  h1 {
+    font-size: $text-4xl;
+    font-weight: 700;
+    margin: 0 0 $spacing-md 0;
+    font-family: $font-heading;
+
+    @include desktop {
+      font-size: $text-5xl;
+    }
+  }
+
+  .subtitle {
+    font-size: $text-lg;
+    opacity: 0.95;
+    max-width: 600px;
+    margin: 0 auto;
+
+    @include desktop {
+      font-size: $text-xl;
+    }
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 $spacing-md;
+}
+
+.section {
+  padding: $spacing-3xl $spacing-md;
+
+  @include desktop {
+    padding: 5rem $spacing-md;
+  }
+
+  &:nth-child(even) {
+    background-color: $color-neutral-50;
+  }
+}
+
+.sectionTitle {
+  font-size: $text-3xl;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 $spacing-md 0;
+  font-family: $font-heading;
+  color: $color-neutral-900;
+
+  @include desktop {
+    font-size: $text-4xl;
+    margin-bottom: $spacing-lg;
+  }
+}
+
+.sectionDescription {
+  text-align: center;
+  font-size: $text-lg;
+  color: $color-neutral-700;
+  margin: 0 auto $spacing-2xl auto;
+  max-width: 700px;
+}
+
+// Vision & Mission
+.visionMission {
+  display: grid;
+  gap: $spacing-xl;
+  margin-top: $spacing-xl;
+
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-2xl;
+  }
+}
+
+.visionMissionItem {
+  text-align: center;
+  padding: $spacing-xl;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  .icon {
+    font-size: 3rem;
+    margin-bottom: $spacing-md;
+  }
+
+  h2 {
+    font-size: $text-2xl;
+    font-weight: 600;
+    margin: 0 0 $spacing-md 0;
+    color: $color-primary-700;
+    font-family: $font-heading;
+  }
+
+  p {
+    font-size: $text-base;
+    line-height: 1.7;
+    color: $color-neutral-700;
+    margin: 0;
+  }
+}
+
+// Story
+.storyCard {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: $spacing-xl;
+
+  @include desktop {
+    padding: $spacing-2xl;
+  }
+
+  p {
+    font-size: $text-base;
+    line-height: 1.8;
+    color: $color-neutral-700;
+    margin: 0 0 $spacing-lg 0;
+
+    @include desktop {
+      font-size: $text-lg;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Values
+.valuesGrid {
+  display: grid;
+  gap: $spacing-lg;
+  margin-top: $spacing-xl;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+  }
+}
+
+.valueCard {
+  text-align: center;
+  padding: $spacing-xl;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  .valueIcon {
+    font-size: 2.5rem;
+    margin-bottom: $spacing-md;
+  }
+
+  h3 {
+    font-size: $text-xl;
+    font-weight: 600;
+    margin: 0 0 $spacing-sm 0;
+    color: $color-neutral-900;
+    font-family: $font-heading;
+  }
+
+  p {
+    font-size: $text-sm;
+    line-height: 1.6;
+    color: $color-neutral-700;
+    margin: 0;
+
+    @include desktop {
+      font-size: $text-base;
+    }
+  }
+}
+
+// Certifications
+.certificationsGrid {
+  display: grid;
+  gap: $spacing-lg;
+  margin-top: $spacing-xl;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-xl;
+  }
+}
+
+// Team
+.teamGrid {
+  display: grid;
+  gap: $spacing-xl;
+  margin-top: $spacing-xl;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.teamCard {
+  text-align: center;
+  padding: $spacing-xl;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  h3 {
+    font-size: $text-xl;
+    font-weight: 600;
+    margin: $spacing-md 0 $spacing-xs 0;
+    color: $color-neutral-900;
+    font-family: $font-heading;
+  }
+}
+
+.teamAvatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto $spacing-md auto;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(135deg, $color-primary-100 0%, $color-secondary-100 100%);
+  @include flex-center;
+  position: relative;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.teamRole {
+  font-size: $text-base;
+  font-weight: 600;
+  color: $color-primary-700;
+  margin: 0 0 $spacing-sm 0;
+}
+
+.teamQualifications {
+  font-size: $text-sm;
+  line-height: 1.6;
+  color: $color-neutral-700;
+  margin: 0 0 $spacing-md 0;
+}
+
+.teamSocial {
+  @include flex-center;
+  gap: $spacing-sm;
+
+  a {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: $color-neutral-100;
+    @include flex-center;
+    text-decoration: none;
+    color: $color-neutral-700;
+    font-weight: 600;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: $color-primary-500;
+      color: white;
+      transform: scale(1.1);
+    }
+
+    span {
+      font-size: $text-sm;
+    }
+  }
+}
+
+// Partners
+.partnersGrid {
+  display: grid;
+  gap: $spacing-xl;
+  margin-top: $spacing-xl;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-2xl;
+  }
+}
+
+.partnerCard {
+  padding: $spacing-xl;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  }
+
+  h3 {
+    font-size: $text-xl;
+    font-weight: 600;
+    margin: $spacing-md 0;
+    color: $color-neutral-900;
+    font-family: $font-heading;
+  }
+
+  p {
+    font-size: $text-base;
+    line-height: 1.7;
+    color: $color-neutral-700;
+    margin: 0;
+  }
+}
+
+.partnerLogo {
+  height: 80px;
+  @include flex-center;
+  background-color: $color-neutral-50;
+  border-radius: 8px;
+  padding: $spacing-md;
+  position: relative;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}

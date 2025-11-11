@@ -1,0 +1,58 @@
+@import '@/styles/variables';
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  border-radius: 12px;
+  white-space: nowrap;
+  font-family: $font-primary;
+}
+
+// Variants
+.primary {
+  background-color: $color-primary-100;
+  color: $color-primary-900;
+}
+
+.secondary {
+  background-color: $color-secondary-100;
+  color: $color-secondary-900;
+}
+
+.success {
+  background-color: #f6ffed;
+  color: #135200;
+}
+
+.warning {
+  background-color: #fffbe6;
+  color: #ad6800;
+}
+
+.error {
+  background-color: #fff1f0;
+  color: #a8071a;
+}
+
+.neutral {
+  background-color: $color-neutral-100;
+  color: $color-neutral-700;
+}
+
+// Sizes
+.small {
+  padding: 2px $spacing-sm;
+  font-size: $text-xs;
+}
+
+.medium {
+  padding: 4px $spacing-md;
+  font-size: $text-sm;
+}
+
+.large {
+  padding: 6px $spacing-lg;
+  font-size: $text-base;
+}

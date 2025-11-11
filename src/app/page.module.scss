@@ -1,0 +1,298 @@
+@import '../styles/variables';
+@import '../styles/mixins';
+
+.homePage {
+  min-height: 100vh;
+  background-color: $color-neutral-50;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @include desktop {
+    padding: 0 $spacing-xl;
+  }
+}
+
+// Hero Section
+.hero {
+  padding: $spacing-3xl 0;
+  background: white;
+
+  @include desktop {
+    padding: 100px 0;
+  }
+}
+
+.heroContent {
+  display: grid;
+  gap: $spacing-3xl;
+  align-items: center;
+
+  @include desktop {
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+  }
+}
+
+.heroText {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.heroTitle {
+  @include heading-style;
+  font-size: $text-3xl;
+  color: $color-neutral-900;
+  margin-bottom: $spacing-lg;
+  line-height: 1.2;
+  font-weight: 700;
+
+  @include desktop {
+    font-size: $text-5xl;
+  }
+}
+
+.heroDescription {
+  font-size: $text-lg;
+  color: $color-neutral-600;
+  margin-bottom: $spacing-2xl;
+  line-height: 1.7;
+
+  @include desktop {
+    font-size: $text-xl;
+  }
+}
+
+.heroStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+  margin-top: $spacing-2xl;
+}
+
+.stat {
+  text-align: center;
+  padding: $spacing-lg;
+  background: $color-neutral-50;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.statNumber {
+  font-size: $text-3xl;
+  font-weight: 700;
+  color: $color-primary-600;
+  margin-bottom: $spacing-xs;
+}
+
+.statLabel {
+  font-size: $text-sm;
+  color: $color-neutral-600;
+  font-weight: 500;
+}
+
+.heroImage {
+  animation: fadeInRight 0.8s ease-out 0.2s both;
+}
+
+.imageWrapper {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(30, 58, 138, 0.1) 100%);
+    z-index: 1;
+  }
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+// Animations
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// Section Styles
+.section {
+  padding: $spacing-3xl 0;
+
+  @include desktop {
+    padding: 60px 0;
+  }
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-xl;
+}
+
+.sectionTitle {
+  @include heading-style;
+  font-size: $text-2xl;
+  color: $color-neutral-900;
+  margin: 0;
+
+  @include desktop {
+    font-size: $text-3xl;
+  }
+}
+
+.sectionLink {
+  color: $color-primary-500;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: $text-base;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $color-primary-700;
+  }
+}
+
+// Grid Layouts
+.grid {
+  display: grid;
+  gap: $spacing-xl;
+  grid-template-columns: 1fr;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Standards Section
+.standardsSection {
+  padding: $spacing-3xl 0;
+  background: $color-neutral-50;
+  margin: $spacing-3xl (-$spacing-lg) 0;
+  padding-left: $spacing-lg;
+  padding-right: $spacing-lg;
+
+  @include desktop {
+    padding: 80px $spacing-xl;
+    margin: 80px (-$spacing-xl) 0;
+  }
+
+  .sectionHeader {
+    text-align: center;
+    flex-direction: column;
+    margin-bottom: $spacing-3xl;
+  }
+
+  .sectionTitle {
+    margin-bottom: $spacing-md;
+  }
+}
+
+.sectionSubtitle {
+  font-size: $text-lg;
+  color: $color-neutral-600;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.standardsGrid {
+  display: grid;
+  gap: $spacing-xl;
+  grid-template-columns: 1fr;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.standardCard {
+  background: white;
+  padding: $spacing-2xl;
+  border-radius: 16px;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+    border-color: $color-primary-500;
+  }
+}
+
+.standardIcon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto $spacing-lg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $color-primary-50;
+  border-radius: 50%;
+  color: $color-primary-600;
+  transition: all 0.3s ease;
+
+  .standardCard:hover & {
+    background: $color-primary-600;
+    color: white;
+    transform: scale(1.1);
+  }
+}
+
+.standardName {
+  font-size: $text-xl;
+  font-weight: 600;
+  color: $color-neutral-900;
+  margin-bottom: $spacing-sm;
+}
+
+.standardDescription {
+  font-size: $text-base;
+  color: $color-neutral-600;
+  line-height: 1.6;
+  margin: 0;
+}

@@ -1,0 +1,260 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.guidePage {
+  min-height: 100vh;
+  background: $color-neutral-50;
+}
+
+.hero {
+  background: linear-gradient(135deg, $color-primary-500 0%, $color-primary-700 100%);
+  color: white;
+  padding: $spacing-3xl 0;
+
+  @include mobile {
+    padding: $spacing-xl 0;
+  }
+}
+
+.heroContainer {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @include mobile {
+    padding: 0 $spacing-md;
+  }
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $text-sm;
+  margin-bottom: $spacing-lg;
+  color: rgba(255, 255, 255, 0.8);
+
+  a {
+    color: white;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  span {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+.heroContent {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-xl;
+
+  @include mobile {
+    flex-direction: column;
+    gap: $spacing-md;
+  }
+}
+
+.iconWrapper {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+
+  @include mobile {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.icon {
+  font-size: 3.5rem;
+
+  @include mobile {
+    font-size: 2.5rem;
+  }
+}
+
+.heroText {
+  flex: 1;
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: $text-5xl;
+  font-weight: 700;
+  margin: 0 0 $spacing-md 0;
+  line-height: 1.2;
+
+  @include mobile {
+    font-size: $text-3xl;
+  }
+}
+
+.description {
+  font-size: $text-xl;
+  line-height: 1.6;
+  margin: 0 0 $spacing-lg 0;
+  opacity: 0.95;
+
+  @include mobile {
+    font-size: $text-base;
+  }
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-lg;
+  align-items: center;
+
+  @include mobile {
+    gap: $spacing-md;
+  }
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  font-size: $text-sm;
+
+  span:first-child {
+    opacity: 0.8;
+  }
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}
+
+.contentWrapper {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: $spacing-3xl $spacing-lg;
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: $spacing-3xl;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    padding: $spacing-xl $spacing-md;
+    gap: $spacing-xl;
+  }
+}
+
+.sidebar {
+  position: sticky;
+  top: $spacing-xl;
+  height: fit-content;
+
+  @include mobile {
+    position: static;
+  }
+}
+
+.tocCard {
+  background: white;
+  padding: $spacing-lg;
+  border-radius: 12px;
+  border: 1px solid $color-neutral-100;
+}
+
+.tocTitle {
+  font-family: $font-heading;
+  font-size: $text-base;
+  font-weight: 600;
+  color: $color-neutral-900;
+  margin: 0 0 $spacing-md 0;
+}
+
+.tocList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.tocItem {
+  a {
+    display: block;
+    padding: $spacing-xs $spacing-sm;
+    font-size: $text-sm;
+    color: $color-neutral-700;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background: $color-neutral-50;
+      color: $color-primary-500;
+    }
+  }
+}
+
+.mainContent {
+  background: white;
+  padding: $spacing-3xl;
+  border-radius: 12px;
+  border: 1px solid $color-neutral-100;
+
+  @include mobile {
+    padding: $spacing-lg;
+  }
+}
+
+.article {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.lastUpdated {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-md;
+  background: $color-neutral-50;
+  border-radius: 8px;
+  font-size: $text-sm;
+  color: $color-neutral-700;
+  margin-bottom: $spacing-xl;
+
+  span:first-child {
+    font-weight: 600;
+  }
+}
+
+.standards {
+  padding: $spacing-lg;
+  background: linear-gradient(135deg, $color-primary-50 0%, $color-secondary-50 100%);
+  border-radius: 12px;
+  margin-top: $spacing-2xl;
+}
+
+.standardsTitle {
+  font-family: $font-heading;
+  font-size: $text-lg;
+  font-weight: 600;
+  color: $color-neutral-900;
+  margin: 0 0 $spacing-md 0;
+}
+
+.standardsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+}

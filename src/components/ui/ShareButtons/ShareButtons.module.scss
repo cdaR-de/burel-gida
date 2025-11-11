@@ -1,0 +1,120 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.shareButtons {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background-color: $color-neutral-50;
+  border-radius: 8px;
+  border: 1px solid $color-neutral-200;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
+}
+
+.label {
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $color-neutral-700;
+}
+
+.buttons {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+// Social media specific colors
+.twitter {
+  background-color: #1DA1F2;
+  color: white;
+
+  &:hover {
+    background-color: #1a8cd8;
+  }
+}
+
+.facebook {
+  background-color: #1877F2;
+  color: white;
+
+  &:hover {
+    background-color: #166fe5;
+  }
+}
+
+.linkedin {
+  background-color: #0A66C2;
+  color: white;
+
+  &:hover {
+    background-color: #095196;
+  }
+}
+
+.whatsapp {
+  background-color: #25D366;
+  color: white;
+
+  &:hover {
+    background-color: #20bd5a;
+  }
+}
+
+.copy {
+  background-color: $color-neutral-700;
+  color: white;
+
+  &:hover {
+    background-color: $color-neutral-900;
+  }
+
+  &.copied {
+    background-color: $color-success;
+
+    &:hover {
+      background-color: $color-success;
+    }
+  }
+}
+
+.native {
+  background-color: $color-primary-500;
+  color: white;
+
+  &:hover {
+    background-color: $color-primary-700;
+  }
+}

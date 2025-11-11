@@ -1,0 +1,105 @@
+@import '../../../styles/variables';
+@import '../../../styles/mixins';
+
+.blogCard {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; // 16:9 aspect ratio
+  background-color: $color-neutral-100;
+  overflow: hidden;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.content {
+  padding: $spacing-lg;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.meta {
+  @include flex-between;
+  margin-bottom: $spacing-sm;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.category {
+  // Badge component will be used here
+}
+
+.date {
+  font-size: $text-sm;
+  color: $color-neutral-500;
+}
+
+.title {
+  @include heading-style;
+  font-size: $text-xl;
+  color: $color-neutral-900;
+  margin-bottom: $spacing-sm;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.excerpt {
+  font-size: $text-base;
+  color: $color-neutral-700;
+  line-height: 1.6;
+  margin-bottom: $spacing-md;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.footer {
+  @include flex-between;
+  padding-top: $spacing-md;
+  border-top: 1px solid $color-neutral-100;
+  font-size: $text-sm;
+  color: $color-neutral-500;
+}
+
+.author {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}
+
+.readTime {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+}

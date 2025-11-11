@@ -1,0 +1,207 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.searchBar {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+}
+
+.form {
+  display: flex;
+  gap: $spacing-sm;
+  width: 100%;
+}
+
+.inputWrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 12px;
+  color: $color-neutral-400;
+  pointer-events: none;
+  z-index: 1;
+  width: 16px;
+  height: 16px;
+}
+
+.input {
+  width: 100%;
+  padding: $spacing-xs $spacing-md $spacing-xs 40px;
+  font-size: $text-sm;
+  font-family: $font-primary;
+  color: $color-neutral-900;
+  background-color: $color-neutral-50;
+  border: 1px solid $color-neutral-200;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+
+  &:hover {
+    border-color: $color-neutral-300;
+    background-color: white;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary-500;
+    background-color: white;
+    box-shadow: 0 0 0 3px rgba($color-primary-500, 0.1);
+  }
+
+  &::placeholder {
+    color: $color-neutral-400;
+  }
+
+  // Remove default search input styling
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+}
+
+.loadingSpinner {
+  position: absolute;
+  right: $spacing-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $color-primary-500;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.submitButton {
+  padding: $spacing-xs $spacing-lg;
+  font-size: $text-sm;
+  font-weight: 600;
+  font-family: $font-primary;
+  color: white;
+  background-color: $color-primary-500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+
+  &:hover {
+    background-color: $color-primary-600;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba($color-primary-500, 0.2);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @include mobile {
+    padding: $spacing-sm $spacing-md;
+    font-size: $text-sm;
+  }
+}
+
+.suggestions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background-color: white;
+  border: 1px solid $color-neutral-100;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.suggestionItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: $text-base;
+  font-family: $font-primary;
+  color: $color-neutral-900;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+
+  &:hover,
+  &.selected {
+    background-color: $color-neutral-50;
+  }
+
+  &:focus {
+    outline: none;
+    background-color: $color-neutral-50;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $color-neutral-100;
+  }
+}
+
+.suggestionIcon {
+  flex-shrink: 0;
+  color: $color-neutral-500;
+}
+
+// Mobile responsive adjustments
+@include mobile {
+  .searchBar {
+    max-width: 100%;
+  }
+
+  .form {
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+
+  .submitButton {
+    width: 100%;
+  }
+
+  .suggestions {
+    max-height: 250px;
+  }
+}
+
+// Tablet adjustments
+@include tablet {
+  .searchBar {
+    max-width: 100%;
+  }
+}

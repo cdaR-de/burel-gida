@@ -1,0 +1,199 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.guidesPage {
+  min-height: 100vh;
+  background: $color-neutral-50;
+  padding: $spacing-3xl 0;
+
+  @include mobile {
+    padding: $spacing-xl 0;
+  }
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+
+  @include mobile {
+    padding: 0 $spacing-md;
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: $spacing-3xl;
+
+  @include mobile {
+    margin-bottom: $spacing-xl;
+  }
+}
+
+.title {
+  font-family: $font-heading;
+  font-size: $text-5xl;
+  font-weight: 700;
+  color: $color-neutral-900;
+  margin: 0 0 $spacing-md 0;
+
+  @include mobile {
+    font-size: $text-3xl;
+  }
+}
+
+.subtitle {
+  font-size: $text-lg;
+  color: $color-neutral-700;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+
+  @include mobile {
+    font-size: $text-base;
+  }
+}
+
+.content {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: $spacing-2xl;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-lg;
+  }
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xl;
+
+  @include mobile {
+    background: white;
+    padding: $spacing-lg;
+    border-radius: 12px;
+    border: 1px solid $color-neutral-100;
+  }
+}
+
+.filterSection {
+  background: white;
+  padding: $spacing-lg;
+  border-radius: 12px;
+  border: 1px solid $color-neutral-100;
+
+  @include mobile {
+    background: transparent;
+    padding: 0;
+    border: none;
+    border-bottom: 1px solid $color-neutral-100;
+    padding-bottom: $spacing-md;
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+}
+
+.searchSection {
+  @extend .filterSection;
+}
+
+.filterTitle {
+  font-family: $font-heading;
+  font-size: $text-base;
+  font-weight: 600;
+  color: $color-neutral-900;
+  margin: 0 0 $spacing-md 0;
+}
+
+.filterOptions {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-sm;
+}
+
+.filterOption {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  cursor: pointer;
+  font-size: $text-sm;
+  color: $color-neutral-700;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: $color-primary-500;
+  }
+
+  input[type="checkbox"] {
+    cursor: pointer;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.searchInput {
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  border: 1px solid $color-neutral-100;
+  border-radius: 8px;
+  font-size: $text-sm;
+  font-family: $font-primary;
+  transition: all 0.2s ease;
+
+  &:focus {
+    outline: none;
+    border-color: $color-primary-500;
+    box-shadow: 0 0 0 3px rgba($color-primary-500, 0.1);
+  }
+
+  &::placeholder {
+    color: $color-neutral-500;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.results {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resultCount {
+  font-size: $text-sm;
+  color: $color-neutral-700;
+  margin: 0;
+}
+
+.guidesList {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-lg;
+}
+
+.emptyState {
+  background: white;
+  padding: $spacing-3xl;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid $color-neutral-100;
+
+  p {
+    font-size: $text-lg;
+    color: $color-neutral-700;
+    margin: 0;
+  }
+}

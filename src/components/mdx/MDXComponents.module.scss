@@ -1,0 +1,206 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+// Headings
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  @include heading-style;
+  margin-top: $spacing-2xl;
+  margin-bottom: $spacing-lg;
+  color: $color-neutral-900;
+
+  &:first-child {
+    margin-top: 0;
+  }
+}
+
+.h1 {
+  font-size: $text-4xl;
+  
+  @include mobile {
+    font-size: $text-3xl;
+  }
+}
+
+.h2 {
+  font-size: $text-3xl;
+  
+  @include mobile {
+    font-size: $text-2xl;
+  }
+}
+
+.h3 {
+  font-size: $text-2xl;
+  
+  @include mobile {
+    font-size: $text-xl;
+  }
+}
+
+.h4 {
+  font-size: $text-xl;
+}
+
+.h5 {
+  font-size: $text-lg;
+}
+
+.h6 {
+  font-size: $text-base;
+  font-weight: 600;
+}
+
+// Paragraphs
+.paragraph {
+  @include body-text;
+  margin-bottom: $spacing-lg;
+  color: $color-neutral-700;
+}
+
+// Links
+.link {
+  color: $color-primary-500;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-bottom-color: $color-primary-500;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-500;
+    outline-offset: 2px;
+  }
+}
+
+// Lists
+.ul, .ol {
+  margin-bottom: $spacing-lg;
+  padding-left: $spacing-xl;
+  color: $color-neutral-700;
+}
+
+.ul {
+  list-style-type: disc;
+}
+
+.ol {
+  list-style-type: decimal;
+}
+
+.li {
+  margin-bottom: $spacing-sm;
+  line-height: 1.6;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Blockquote
+.blockquote {
+  margin: $spacing-xl 0;
+  padding: $spacing-lg $spacing-xl;
+  border-left: 4px solid $color-primary-500;
+  background-color: $color-neutral-50;
+  font-style: italic;
+  color: $color-neutral-700;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// Code
+.code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: $text-sm;
+  padding: 2px 6px;
+  background-color: $color-neutral-100;
+  border-radius: 4px;
+  color: $color-error;
+}
+
+.pre {
+  margin: $spacing-xl 0;
+  padding: $spacing-lg;
+  background-color: $color-neutral-900;
+  border-radius: 8px;
+  overflow-x: auto;
+
+  code {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: $text-sm;
+    padding: 0;
+    background-color: transparent;
+    color: $color-neutral-50;
+  }
+}
+
+// Images
+.imageWrapper {
+  display: block;
+  margin: $spacing-2xl 0;
+  text-align: center;
+}
+
+.image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+// Tables
+.tableWrapper {
+  margin: $spacing-xl 0;
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: $text-sm;
+}
+
+.thead {
+  background-color: $color-neutral-100;
+}
+
+.th, .td {
+  padding: $spacing-md;
+  text-align: left;
+  border: 1px solid $color-neutral-100;
+}
+
+.th {
+  font-weight: 600;
+  color: $color-neutral-900;
+}
+
+.td {
+  color: $color-neutral-700;
+}
+
+.tr {
+  &:nth-child(even) {
+    background-color: $color-neutral-50;
+  }
+}
+
+// Horizontal rule
+.hr {
+  margin: $spacing-2xl 0;
+  border: none;
+  border-top: 2px solid $color-neutral-100;
+}
+
+// Strong and emphasis
+.strong {
+  font-weight: 600;
+  color: $color-neutral-900;
+}
+
+.em {
+  font-style: italic;
+}
