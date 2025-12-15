@@ -6,30 +6,36 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: $spacing-lg;
+  padding: $spacing-xl;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  border: 1px solid $color-neutral-100;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   height: 100%;
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    border-color: $color-primary-200;
   }
 }
 
 .imageWrapper {
   width: 100%;
-  max-width: 120px;
-  height: 120px;
+  max-width: 140px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: $spacing-md;
-  background-color: $color-neutral-50;
-  border-radius: 8px;
-  padding: $spacing-md;
+  margin-bottom: $spacing-lg;
+  background-color: white;
+  padding: $spacing-sm;
+  transition: transform 0.3s ease;
+
+  .certification:hover & {
+    transform: scale(1.05);
+  }
 
   img {
     max-width: 100%;
@@ -43,8 +49,9 @@
 }
 
 .name {
-  @include heading-style;
+  font-family: $font-heading;
   font-size: $text-lg;
+  font-weight: 600;
   color: $color-neutral-900;
   margin-bottom: $spacing-xs;
 }
@@ -53,12 +60,15 @@
   font-size: $text-sm;
   color: $color-neutral-600;
   margin-bottom: $spacing-xs;
+  font-weight: 500;
 }
 
 .date {
-  font-size: $text-sm;
+  font-size: $text-xs;
   color: $color-neutral-500;
-  margin-bottom: $spacing-md;
+  margin-bottom: $spacing-lg;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .verifyLink {
@@ -66,17 +76,26 @@
   align-items: center;
   gap: $spacing-xs;
   font-size: $text-sm;
-  color: $color-primary-500;
+  color: $color-primary-600;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  padding: 6px 16px;
+  background: $color-primary-50;
+  border-radius: 9999px;
 
   &:hover {
+    background: $color-primary-100;
     color: $color-primary-700;
-    text-decoration: underline;
+    padding-right: 20px;
   }
 
   &::after {
     content: '→';
+    transition: transform 0.2s ease;
+  }
+
+  &:hover::after {
+    transform: translateX(2px);
   }
 }

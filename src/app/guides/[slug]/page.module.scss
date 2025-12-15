@@ -7,19 +7,36 @@
 }
 
 .hero {
-  background: linear-gradient(135deg, $color-primary-500 0%, $color-primary-700 100%);
+  position: relative;
+  background: linear-gradient(135deg, $color-primary-600 0%, $color-primary-800 100%);
   color: white;
-  padding: $spacing-3xl 0;
+  padding: $spacing-4xl 0;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      radial-gradient(circle at 20% 150%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% -50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
 
   @include mobile {
-    padding: $spacing-xl 0;
+    padding: $spacing-2xl 0;
   }
 }
 
 .heroContainer {
+  position: relative;
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 $spacing-lg;
+  z-index: 1;
 
   @include mobile {
     padding: 0 $spacing-md;
@@ -31,16 +48,21 @@
   align-items: center;
   gap: $spacing-sm;
   font-size: $text-sm;
-  margin-bottom: $spacing-lg;
+  margin-bottom: $spacing-xl;
   color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
 
   a {
     color: white;
     text-decoration: none;
-    transition: opacity 0.2s ease;
+    transition: all 0.2s ease;
+    padding: 4px 8px;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.1);
 
     &:hover {
-      opacity: 0.8;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
     }
   }
 
@@ -52,24 +74,31 @@
 .heroContent {
   display: flex;
   align-items: flex-start;
-  gap: $spacing-xl;
+  gap: $spacing-2xl;
 
   @include mobile {
     flex-direction: column;
-    gap: $spacing-md;
+    gap: $spacing-lg;
   }
 }
 
 .iconWrapper {
   flex-shrink: 0;
-  width: 100px;
-  height: 100px;
+  width: 120px;
+  height: 120px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
-  border-radius: 16px;
-  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    // transform: scale(1.05) rotate(5deg); // Removed animation
+  }
 
   @include mobile {
     width: 80px;
@@ -78,7 +107,8 @@
 }
 
 .icon {
-  font-size: 3.5rem;
+  font-size: 4rem;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 
   @include mobile {
     font-size: 2.5rem;
@@ -92,9 +122,12 @@
 .title {
   font-family: $font-heading;
   font-size: $text-5xl;
-  font-weight: 700;
+  font-weight: 800;
   margin: 0 0 $spacing-md 0;
-  line-height: 1.2;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  color: white; // Explicitly set color to override global h1
 
   @include mobile {
     font-size: $text-3xl;
@@ -104,8 +137,10 @@
 .description {
   font-size: $text-xl;
   line-height: 1.6;
-  margin: 0 0 $spacing-lg 0;
-  opacity: 0.95;
+  margin: 0 0 $spacing-xl 0;
+  color: rgba(255, 255, 255, 0.95); // Explicitly set light color
+  max-width: 800px;
+  font-weight: 400;
 
   @include mobile {
     font-size: $text-base;
@@ -115,11 +150,17 @@
 .meta {
   display: flex;
   flex-wrap: wrap;
-  gap: $spacing-lg;
+  gap: $spacing-xl;
   align-items: center;
+  background: rgba(0, 0, 0, 0.1);
+  padding: $spacing-md $spacing-lg;
+  border-radius: 12px;
+  width: fit-content;
+  backdrop-filter: blur(4px);
 
   @include mobile {
     gap: $spacing-md;
+    width: 100%;
   }
 }
 
@@ -128,6 +169,7 @@
   align-items: center;
   gap: $spacing-sm;
   font-size: $text-sm;
+  font-weight: 500;
 
   span:first-child {
     opacity: 0.8;
@@ -138,18 +180,22 @@
   display: flex;
   flex-wrap: wrap;
   gap: $spacing-sm;
+  margin-bottom: $spacing-xl;
 }
 
 .contentWrapper {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: $spacing-3xl $spacing-lg;
+  margin: -60px auto 0;
+  padding: 0 $spacing-lg $spacing-4xl;
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 300px 1fr;
   gap: $spacing-3xl;
+  position: relative;
+  z-index: 2;
 
   @include mobile {
     grid-template-columns: 1fr;
+    margin: 0;
     padding: $spacing-xl $spacing-md;
     gap: $spacing-xl;
   }
@@ -165,55 +211,18 @@
   }
 }
 
-.tocCard {
-  background: white;
-  padding: $spacing-lg;
-  border-radius: 12px;
-  border: 1px solid $color-neutral-100;
-}
-
-.tocTitle {
-  font-family: $font-heading;
-  font-size: $text-base;
-  font-weight: 600;
-  color: $color-neutral-900;
-  margin: 0 0 $spacing-md 0;
-}
-
-.tocList {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-xs;
-}
-
-.tocItem {
-  a {
-    display: block;
-    padding: $spacing-xs $spacing-sm;
-    font-size: $text-sm;
-    color: $color-neutral-700;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background: $color-neutral-50;
-      color: $color-primary-500;
-    }
-  }
-}
+// Removed old TOC styles as they are now in the component
 
 .mainContent {
   background: white;
-  padding: $spacing-3xl;
-  border-radius: 12px;
+  padding: $spacing-4xl;
+  border-radius: 24px;
   border: 1px solid $color-neutral-100;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 
   @include mobile {
     padding: $spacing-lg;
+    border-radius: 16px;
   }
 }
 
@@ -223,34 +232,53 @@
 }
 
 .lastUpdated {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: $spacing-sm;
-  padding: $spacing-md;
+  padding: $spacing-sm $spacing-md;
   background: $color-neutral-50;
   border-radius: 8px;
   font-size: $text-sm;
-  color: $color-neutral-700;
+  color: $color-neutral-600;
   margin-bottom: $spacing-xl;
+  border: 1px solid $color-neutral-200;
 
   span:first-child {
     font-weight: 600;
+    color: $color-neutral-900;
   }
 }
 
 .standards {
-  padding: $spacing-lg;
+  padding: $spacing-xl;
   background: linear-gradient(135deg, $color-primary-50 0%, $color-secondary-50 100%);
-  border-radius: 12px;
-  margin-top: $spacing-2xl;
+  border-radius: 16px;
+  margin-top: $spacing-3xl;
+  border: 1px solid rgba($color-primary-200, 0.5);
 }
 
 .standardsTitle {
   font-family: $font-heading;
   font-size: $text-lg;
-  font-weight: 600;
-  color: $color-neutral-900;
+  font-weight: 700;
+  color: $color-primary-900;
   margin: 0 0 $spacing-md 0;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+
+  &::before {
+    content: '✓';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: $color-primary-500;
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+  }
 }
 
 .standardsList {

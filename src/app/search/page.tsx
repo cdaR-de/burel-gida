@@ -3,6 +3,7 @@
 import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
+import { useLocale } from '@/contexts/LocaleContext';
 import { SearchResultWithHighlight, SearchResultType } from '@/lib/search';
 import { Badge } from '@/components/ui';
 import { Loading } from '@/components/ui';
@@ -17,6 +18,8 @@ function SearchResultsContent() {
   const [error, setError] = useState<string | null>(null);
   const [searchTime, setSearchTime] = useState<number>(0);
 
+  const { locale } = useLocale();
+
   useEffect(() => {
     if (!query || query.trim().length < 2) {
       setResults([]);
@@ -29,8 +32,8 @@ function SearchResultsContent() {
       setError(null);
 
       try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}&groupByType=false`);
-        
+        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}&locale=${locale}&groupByType=false`);
+
         if (!response.ok) {
           throw new Error('Search failed');
         }
@@ -60,7 +63,7 @@ function SearchResultsContent() {
     };
 
     performSearch();
-  }, [query]);
+  }, [query, locale]);
 
   const getTypeLabel = (type: SearchResultType): string => {
     switch (type) {

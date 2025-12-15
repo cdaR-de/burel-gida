@@ -35,11 +35,12 @@ export const BlogCard: React.FC<BlogCardProps> = ({
     <Link href={`/blog/${slug}`} className={styles.blogCard}>
       {featuredImage && (
         <div className={styles.imageWrapper}>
-          <Image 
-            src={featuredImage} 
+          <Image
+            src={featuredImage}
             alt={title}
             fill
-            style={{ objectFit: 'cover' }}
+            className={styles.image}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
         </div>
       )}

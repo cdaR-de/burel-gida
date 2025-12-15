@@ -2,15 +2,13 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import MobileNav from '../MobileNav';
+import { useLocale } from '@/contexts/LocaleContext';
+import { MobileNav } from '../MobileNav/MobileNav';
 import SearchBar from '@/components/ui/SearchBar';
 import styles from './Header.module.scss';
 
-interface HeaderProps {
-  locale?: string;
-}
-
-export default function Header({ locale = 'tr' }: HeaderProps) {
+export default function Header() {
+  const { locale, setLocale } = useLocale();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigationLinks = [
@@ -24,6 +22,10 @@ export default function Header({ locale = 'tr' }: HeaderProps) {
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const toggleLocale = () => {
+    setLocale(locale === 'tr' ? 'en' : 'tr');
   };
 
   return (
@@ -59,10 +61,15 @@ export default function Header({ locale = 'tr' }: HeaderProps) {
           />
         </div>
 
-        {/* Language Switcher Placeholder */}
+        {/* Language Switcher */}
         <div className={styles.languageSwitcher}>
-          <button className={styles.langButton} aria-label="Switch language">
-            {locale === 'tr' ? 'TR' : 'EN'}
+          <button
+            className={styles.langButton}
+            onClick={toggleLocale}
+            aria-label="Switch language"
+          >
+            <span className={styles.langIcon}>🌐</span>
+            <span className={styles.langText}>{locale === 'tr' ? 'TR' : 'EN'}</span>
           </button>
         </div>
 
@@ -85,7 +92,6 @@ export default function Header({ locale = 'tr' }: HeaderProps) {
       <MobileNav
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
-        locale={locale}
       />
     </header>
   );

@@ -3,15 +3,17 @@
 import { useState, useMemo } from 'react';
 import { getAllFAQs, getFAQCategories } from '@/lib/faq';
 import { FAQItem } from '@/components/content';
+import { useLocale } from '@/contexts/LocaleContext';
+import { translations } from '@/lib/translations';
 import styles from './page.module.scss';
 
 export default function FAQPage() {
-  // For now, we'll use 'en' as default. This will be replaced with proper i18n later
-  const locale = 'en';
-  
+  const { locale } = useLocale();
+  const t = translations[locale].faq;
+
   const allFAQs = useMemo(() => getAllFAQs(locale), [locale]);
   const categories = useMemo(() => getFAQCategories(locale), [locale]);
-  
+
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedId, setExpandedId] = useState<string | null>(null);
@@ -51,9 +53,9 @@ export default function FAQPage() {
     <div className={styles.faqPage}>
       <div className={styles.container}>
         <header className={styles.header}>
-          <h1 className={styles.title}>Frequently Asked Questions</h1>
+          <h1 className={styles.title}>{t.title}</h1>
           <p className={styles.subtitle}>
-            Find answers to common questions about food safety, regulations, and certifications
+            {t.subtitle}
           </p>
         </header>
 
@@ -77,7 +79,7 @@ export default function FAQPage() {
             </svg>
             <input
               type="text"
-              placeholder="Search FAQs..."
+              placeholder={t.searchPlaceholder}
               value={searchQuery}
               onChange={handleSearchChange}
               className={styles.searchInput}
@@ -87,19 +89,17 @@ export default function FAQPage() {
 
           <div className={styles.categories}>
             <button
-              className={`${styles.categoryButton} ${
-                selectedCategory === 'all' ? styles.active : ''
-              }`}
+              className={`${styles.categoryButton} ${selectedCategory === 'all' ? styles.active : ''
+                }`}
               onClick={() => handleCategoryChange('all')}
             >
-              All
+              {t.categories.all}
             </button>
             {categories.map(category => (
               <button
                 key={category}
-                className={`${styles.categoryButton} ${
-                  selectedCategory === category ? styles.active : ''
-                }`}
+                className={`${styles.categoryButton} ${selectedCategory === category ? styles.active : ''
+                  }`}
                 onClick={() => handleCategoryChange(category)}
               >
                 {category}
@@ -122,7 +122,7 @@ export default function FAQPage() {
             ))
           ) : (
             <div className={styles.noResults}>
-              <p>No FAQs found matching your search.</p>
+              <p>{t.noResults}</p>
               <button
                 className={styles.resetButton}
                 onClick={() => {
@@ -130,7 +130,7 @@ export default function FAQPage() {
                   setSelectedCategory('all');
                 }}
               >
-                Clear filters
+                {t.clearFilters}
               </button>
             </div>
           )}

@@ -15,6 +15,7 @@
     "@types/mdx": "^2.0.13",
     "fuse.js": "^7.1.0",
     "gray-matter": "^4.0.3",
+    "lucide-react": "^0.561.0",
     "next": "^14.2.0",
     "next-mdx-remote": "^5.0.0",
     "react": "^18.3.0",

@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { search } from '@/lib/search';
 
+export const dynamic = 'force-dynamic';
+
 // Cache for search results (simple in-memory cache)
 const searchCache = new Map<string, { results: any; timestamp: number }>();
 const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes

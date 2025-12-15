@@ -3,245 +3,339 @@
 
 .aboutPage {
   min-height: 100vh;
+  background: $color-neutral-50;
 }
 
 .hero {
-  background: linear-gradient(135deg, $color-primary-500 0%, $color-primary-700 100%);
+  position: relative;
+  background: linear-gradient(135deg, $color-primary-600 0%, $color-primary-800 100%);
   color: white;
-  padding: $spacing-3xl $spacing-md;
+  padding: $spacing-5xl 0 $spacing-4xl;
   text-align: center;
+  overflow: hidden;
 
-  @include desktop {
-    padding: 5rem $spacing-md;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+      radial-gradient(circle at 20% 150%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% -50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+    pointer-events: none;
   }
 
   h1 {
-    font-size: $text-4xl;
-    font-weight: 700;
-    margin: 0 0 $spacing-md 0;
     font-family: $font-heading;
+    font-size: $text-6xl;
+    font-weight: 800;
+    margin-bottom: $spacing-lg;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
 
-    @include desktop {
-      font-size: $text-5xl;
+    @include mobile {
+      font-size: $text-4xl;
     }
   }
+}
 
-  .subtitle {
+.subtitle {
+  font-size: $text-xl;
+  max-width: 700px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+  font-weight: 400;
+
+  @include mobile {
     font-size: $text-lg;
-    opacity: 0.95;
-    max-width: 600px;
-    margin: 0 auto;
-
-    @include desktop {
-      font-size: $text-xl;
-    }
   }
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 0 $spacing-md;
+  padding: 0 $spacing-lg;
+  position: relative;
+  z-index: 1;
+
+  @include mobile {
+    padding: 0 $spacing-md;
+  }
+}
+
+// Stats Section
+.statsSection {
+  margin-top: -40px;
+  position: relative;
+  z-index: 2;
+  margin-bottom: $spacing-4xl;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: $spacing-lg;
+  background: white;
+  padding: $spacing-2xl;
+  border-radius: 24px;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+  border: 1px solid $color-neutral-100;
+
+  @include tablet {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+  }
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.statNumber {
+  font-family: $font-heading;
+  font-size: $text-4xl;
+  font-weight: 800;
+  color: $color-primary-600;
+  margin-bottom: $spacing-xs;
+}
+
+.statLabel {
+  font-size: $text-sm;
+  font-weight: 600;
+  color: $color-neutral-600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .section {
-  padding: $spacing-3xl $spacing-md;
+  padding: $spacing-4xl 0;
 
-  @include desktop {
-    padding: 5rem $spacing-md;
+  @include mobile {
+    padding: $spacing-2xl 0;
   }
+}
 
-  &:nth-child(even) {
-    background-color: $color-neutral-50;
+.sectionAlt {
+  padding: $spacing-4xl 0;
+  background-color: white;
+  border-top: 1px solid $color-neutral-100;
+  border-bottom: 1px solid $color-neutral-100;
+
+  @include mobile {
+    padding: $spacing-2xl 0;
   }
 }
 
 .sectionTitle {
-  font-size: $text-3xl;
+  font-family: $font-heading;
+  font-size: $text-4xl;
   font-weight: 700;
   text-align: center;
-  margin: 0 0 $spacing-md 0;
-  font-family: $font-heading;
+  margin-bottom: $spacing-3xl;
   color: $color-neutral-900;
+  letter-spacing: -0.01em;
 
-  @include desktop {
-    font-size: $text-4xl;
-    margin-bottom: $spacing-lg;
+  @include mobile {
+    font-size: $text-3xl;
+    margin-bottom: $spacing-xl;
   }
 }
 
 .sectionDescription {
   text-align: center;
   font-size: $text-lg;
-  color: $color-neutral-700;
-  margin: 0 auto $spacing-2xl auto;
-  max-width: 700px;
+  color: $color-neutral-600;
+  max-width: 600px;
+  margin: -20px auto $spacing-3xl;
+  line-height: 1.6;
 }
 
-// Vision & Mission
-.visionMission {
+// Split Layout
+.splitLayout {
   display: grid;
-  gap: $spacing-xl;
-  margin-top: $spacing-xl;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-4xl;
+  align-items: center;
 
-  @include desktop {
-    grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-2xl;
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
   }
 }
 
-.visionMissionItem {
-  text-align: center;
-  padding: $spacing-xl;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+.splitContent {
+  .sectionTitle {
+    text-align: left;
+    margin-bottom: $spacing-lg;
+  }
 
-  .icon {
-    font-size: 3rem;
-    margin-bottom: $spacing-md;
+  .leadText {
+    font-size: $text-xl;
+    color: $color-primary-700;
+    font-weight: 500;
+    margin-bottom: $spacing-lg;
+    line-height: 1.5;
+  }
+
+  p {
+    color: $color-neutral-600;
+    line-height: 1.8;
+    margin-bottom: $spacing-lg;
+    font-size: $text-lg;
+  }
+}
+
+.splitImage {
+  position: relative;
+}
+
+.imageWrapper {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15);
+  aspect-ratio: 4/3;
+  background: $color-neutral-200;
+}
+
+.placeholderImage {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, $color-neutral-200 0%, $color-neutral-300 100%);
+}
+
+// Vision Mission Grid
+.visionMissionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-3xl;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $spacing-xl;
+  }
+}
+
+.visionItem,
+.missionItem {
+  padding: $spacing-2xl;
+  border-radius: 24px;
+  background: $color-neutral-50;
+  border: 1px solid $color-neutral-200;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05);
+    border-color: $color-primary-200;
   }
 
   h2 {
-    font-size: $text-2xl;
-    font-weight: 600;
-    margin: 0 0 $spacing-md 0;
-    color: $color-primary-700;
     font-family: $font-heading;
+    font-size: $text-2xl;
+    font-weight: 700;
+    margin-bottom: $spacing-md;
+    color: $color-primary-700;
   }
 
   p {
-    font-size: $text-base;
+    color: $color-neutral-600;
     line-height: 1.7;
-    color: $color-neutral-700;
-    margin: 0;
+    font-size: $text-lg;
   }
 }
 
-// Story
-.storyCard {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: $spacing-xl;
-
-  @include desktop {
-    padding: $spacing-2xl;
-  }
-
-  p {
-    font-size: $text-base;
-    line-height: 1.8;
-    color: $color-neutral-700;
-    margin: 0 0 $spacing-lg 0;
-
-    @include desktop {
-      font-size: $text-lg;
-    }
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
-// Values
+// Values Grid
 .valuesGrid {
   display: grid;
-  gap: $spacing-lg;
-  margin-top: $spacing-xl;
-
-  @include tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include desktop {
-    grid-template-columns: repeat(4, 1fr);
-    gap: $spacing-xl;
-  }
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: $spacing-xl;
 }
 
 .valueCard {
-  text-align: center;
-  padding: $spacing-xl;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: $spacing-2xl;
+  height: 100%;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid $color-neutral-100;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: $color-primary-500;
+    opacity: 0;
+    transition: opacity 0.3s ease;
   }
 
-  .valueIcon {
-    font-size: 2.5rem;
-    margin-bottom: $spacing-md;
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    border-color: $color-primary-200;
+
+    &::before {
+      opacity: 1;
+    }
   }
 
   h3 {
-    font-size: $text-xl;
-    font-weight: 600;
-    margin: 0 0 $spacing-sm 0;
-    color: $color-neutral-900;
     font-family: $font-heading;
+    font-size: $text-xl;
+    font-weight: 700;
+    margin-bottom: $spacing-md;
+    color: $color-neutral-900;
   }
 
   p {
-    font-size: $text-sm;
+    color: $color-neutral-600;
     line-height: 1.6;
-    color: $color-neutral-700;
-    margin: 0;
-
-    @include desktop {
-      font-size: $text-base;
-    }
   }
 }
 
-// Certifications
-.certificationsGrid {
-  display: grid;
-  gap: $spacing-lg;
-  margin-top: $spacing-xl;
-
-  @include tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include desktop {
-    grid-template-columns: repeat(4, 1fr);
-    gap: $spacing-xl;
-  }
-}
-
-// Team
+// Team Grid
 .teamGrid {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: $spacing-xl;
-  margin-top: $spacing-xl;
-
-  @include tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include desktop {
-    grid-template-columns: repeat(4, 1fr);
-  }
 }
 
 .teamCard {
   text-align: center;
-  padding: $spacing-xl;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: $spacing-2xl;
+  background: white;
+  border-radius: 20px;
+  border: 1px solid $color-neutral-100;
+  transition: all 0.3s ease;
 
   &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    border-color: $color-primary-200;
   }
 
   h3 {
+    font-family: $font-heading;
     font-size: $text-xl;
     font-weight: 600;
-    margin: $spacing-md 0 $spacing-xs 0;
+    margin: $spacing-lg 0 $spacing-xs;
     color: $color-neutral-900;
-    font-family: $font-heading;
   }
 }
 
@@ -253,7 +347,6 @@
   overflow: hidden;
   background: linear-gradient(135deg, $color-primary-100 0%, $color-secondary-100 100%);
   @include flex-center;
-  position: relative;
 
   img {
     width: 100%;
@@ -271,90 +364,57 @@
 
 .teamQualifications {
   font-size: $text-sm;
-  line-height: 1.6;
-  color: $color-neutral-700;
-  margin: 0 0 $spacing-md 0;
+  color: $color-neutral-600;
 }
 
-.teamSocial {
-  @include flex-center;
-  gap: $spacing-sm;
-
-  a {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background-color: $color-neutral-100;
-    @include flex-center;
-    text-decoration: none;
-    color: $color-neutral-700;
-    font-weight: 600;
-    transition: all 0.2s ease;
-
-    &:hover {
-      background-color: $color-primary-500;
-      color: white;
-      transform: scale(1.1);
-    }
-
-    span {
-      font-size: $text-sm;
-    }
-  }
+// CTA Section
+.ctaSection {
+  padding: $spacing-5xl 0;
+  background: linear-gradient(135deg, $color-primary-900 0%, $color-primary-700 100%);
+  color: white;
+  text-align: center;
+  margin-top: $spacing-4xl;
 }
 
-// Partners
-.partnersGrid {
-  display: grid;
-  gap: $spacing-xl;
-  margin-top: $spacing-xl;
+.ctaContent {
+  max-width: 800px;
+  margin: 0 auto;
 
-  @include tablet {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  @include desktop {
-    grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-2xl;
-  }
-}
-
-.partnerCard {
-  padding: $spacing-xl;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  }
-
-  h3 {
-    font-size: $text-xl;
-    font-weight: 600;
-    margin: $spacing-md 0;
-    color: $color-neutral-900;
+  h2 {
     font-family: $font-heading;
+    font-size: $text-4xl;
+    font-weight: 700;
+    margin-bottom: $spacing-lg;
+    color: white;
+
+    @include mobile {
+      font-size: $text-3xl;
+    }
   }
 
   p {
-    font-size: $text-base;
-    line-height: 1.7;
-    color: $color-neutral-700;
-    margin: 0;
+    font-size: $text-xl;
+    margin-bottom: $spacing-2xl;
+    opacity: 0.9;
+    line-height: 1.6;
   }
 }
 
-.partnerLogo {
-  height: 80px;
-  @include flex-center;
-  background-color: $color-neutral-50;
-  border-radius: 8px;
-  padding: $spacing-md;
-  position: relative;
+.ctaButton {
+  display: inline-block;
+  background: white;
+  color: $color-primary-700;
+  padding: $spacing-md $spacing-2xl;
+  border-radius: 9999px;
+  font-weight: 700;
+  font-size: $text-lg;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
-  img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: $color-neutral-50;
   }
 }

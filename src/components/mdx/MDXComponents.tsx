@@ -6,36 +6,54 @@ import styles from './MDXComponents.module.scss';
 // Custom components for MDX content
 const MDXComponents = {
   // Headings
-  h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h1 className={styles.h1} {...props}>
-      {children}
-    </h1>
-  ),
-  h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 className={styles.h2} {...props}>
-      {children}
-    </h2>
-  ),
-  h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 className={styles.h3} {...props}>
-      {children}
-    </h3>
-  ),
-  h4: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4 className={styles.h4} {...props}>
-      {children}
-    </h4>
-  ),
-  h5: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h5 className={styles.h5} {...props}>
-      {children}
-    </h5>
-  ),
-  h6: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h6 className={styles.h6} {...props}>
-      {children}
-    </h6>
-  ),
+  h1: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = typeof children === 'string' ? children.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+    return (
+      <h1 id={id} className={styles.h1} {...props}>
+        {children}
+      </h1>
+    );
+  },
+  h2: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = typeof children === 'string' ? children.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+    return (
+      <h2 id={id} className={styles.h2} {...props}>
+        {children}
+      </h2>
+    );
+  },
+  h3: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = typeof children === 'string' ? children.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+    return (
+      <h3 id={id} className={styles.h3} {...props}>
+        {children}
+      </h3>
+    );
+  },
+  h4: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = typeof children === 'string' ? children.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+    return (
+      <h4 id={id} className={styles.h4} {...props}>
+        {children}
+      </h4>
+    );
+  },
+  h5: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = typeof children === 'string' ? children.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+    return (
+      <h5 id={id} className={styles.h5} {...props}>
+        {children}
+      </h5>
+    );
+  },
+  h6: ({ children, ...props }: React.HTMLAttributes<HTMLHeadingElement>) => {
+    const id = typeof children === 'string' ? children.toLowerCase().replace(/[^a-z0-9]+/g, '-') : undefined;
+    return (
+      <h6 id={id} className={styles.h6} {...props}>
+        {children}
+      </h6>
+    );
+  },
 
   // Paragraphs and text
   p: ({ children, ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
@@ -47,7 +65,7 @@ const MDXComponents = {
   // Links
   a: ({ href, children, ...props }: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
     const isExternal = href?.startsWith('http');
-    
+
     if (isExternal) {
       return (
         <a
@@ -61,7 +79,7 @@ const MDXComponents = {
         </a>
       );
     }
-    
+
     return (
       <Link href={href || '#'} className={styles.link} {...props}>
         {children}

@@ -13,19 +13,10 @@ export function getContentDirectory(type: 'blog' | 'guides' | 'pages'): string {
 }
 
 /**
- * Generate a slug from a filename
+ * Generate a slug from a filename, handling locale extensions
  */
 export function generateSlug(filename: string): string {
-  return filename.replace(/\.mdx?$/, '');
-}
-
-/**
- * Validate a slug format
- */
-export function validateSlug(slug: string): boolean {
-  // Slug should only contain lowercase letters, numbers, and hyphens
-  const slugRegex = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
-  return slugRegex.test(slug);
+  return filename.replace(/\.(tr|en)?\.mdx?$/, '');
 }
 
 /**
@@ -33,7 +24,7 @@ export function validateSlug(slug: string): boolean {
  */
 export function getContentFiles(type: 'blog' | 'guides' | 'pages'): string[] {
   const dir = getContentDirectory(type);
-  
+
   if (!fs.existsSync(dir)) {
     return [];
   }
@@ -47,11 +38,21 @@ export function getContentFiles(type: 'blog' | 'guides' | 'pages'): string[] {
  */
 export function readContentFile<T = Record<string, any>>(
   type: 'blog' | 'guides' | 'pages',
-  slug: string
+  slug: string,
+  locale: string = 'en'
 ): { data: T; content: string; readTime: number } | null {
   try {
     const dir = getContentDirectory(type);
-    const fullPath = path.join(dir, `${slug}.mdx`);
+
+    // Try to find locale-specific file first
+    let filename = `${slug}.${locale}.mdx`;
+    let fullPath = path.join(dir, filename);
+
+    // If not found and locale is not default, try default/English
+    if (!fs.existsSync(fullPath)) {
+      filename = `${slug}.mdx`;
+      fullPath = path.join(dir, filename);
+    }
 
     if (!fs.existsSync(fullPath)) {
       return null;
@@ -59,7 +60,7 @@ export function readContentFile<T = Record<string, any>>(
 
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
-    
+
     // Calculate reading time
     const stats = readingTime(content);
     const readTime = Math.ceil(stats.minutes);
@@ -76,18 +77,21 @@ export function readContentFile<T = Record<string, any>>(
 }
 
 /**
- * Get all content items of a specific type
+ * Get all content items of a specific type for a locale
  */
 export function getAllContent<T = Record<string, any>>(
-  type: 'blog' | 'guides' | 'pages'
+  type: 'blog' | 'guides' | 'pages',
+  locale: string = 'en'
 ): Array<{ slug: string; data: T; content: string; readTime: number }> {
   const files = getContentFiles(type);
-  
-  const content = files
-    .map((filename) => {
-      const slug = generateSlug(filename);
-      const fileData = readContentFile<T>(type, slug);
-      
+
+  // Get unique slugs (removing .tr.mdx, .en.mdx extensions)
+  const slugs = Array.from(new Set(files.map(generateSlug)));
+
+  const content = slugs
+    .map((slug) => {
+      const fileData = readContentFile<T>(type, slug, locale);
+
       if (!fileData) {
         return null;
       }
@@ -156,7 +160,7 @@ export function getUniqueCategories<T extends { data: { category?: string } }>(
   const categories = content
     .map((item) => item.data.category)
     .filter((category): category is string => !!category);
-  
+
   return Array.from(new Set(categories));
 }
 
@@ -210,7 +214,7 @@ export function searchContent<T extends { data: { title?: string }; content: str
   query: string
 ): T[] {
   const lowerQuery = query.toLowerCase();
-  
+
   return content.filter((item) => {
     const titleMatch = item.data.title?.toLowerCase().includes(lowerQuery);
     const contentMatch = item.content.toLowerCase().includes(lowerQuery);
@@ -238,7 +242,7 @@ export function getRelatedContent<T extends { slug: string; data: { tags?: strin
       const matchingTags = item.data.tags?.filter((tag) =>
         currentTags.includes(tag)
       ) || [];
-      
+
       return {
         item,
         score: matchingTags.length,

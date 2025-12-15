@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getSearchSuggestions } from '@/lib/search';
 
+export const dynamic = 'force-dynamic';
+
 // Cache for suggestions
 const suggestionsCache = new Map<string, { suggestions: string[]; timestamp: number }>();
 const CACHE_DURATION = 10 * 60 * 1000; // 10 minutes

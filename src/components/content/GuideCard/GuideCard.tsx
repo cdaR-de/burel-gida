@@ -2,6 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import { Badge } from '@/components/ui';
 import { GuideDifficulty } from '@/types/content';
+import {
+  ShieldAlert,
+  ShieldCheck,
+  Microscope,
+  Award,
+  BookOpen,
+  LucideIcon
+} from 'lucide-react';
 import styles from './GuideCard.module.scss';
 
 export interface GuideCardProps {
@@ -26,6 +34,14 @@ const difficultyLabels: Record<GuideDifficulty, string> = {
   advanced: 'Advanced'
 };
 
+const iconMap: Record<string, LucideIcon> = {
+  'shield-alert': ShieldAlert,
+  'shield-check': ShieldCheck,
+  'microscope': Microscope,
+  'award': Award,
+  'book-open': BookOpen,
+};
+
 export const GuideCard: React.FC<GuideCardProps> = ({
   title,
   description,
@@ -33,18 +49,24 @@ export const GuideCard: React.FC<GuideCardProps> = ({
   topics,
   relatedStandards,
   slug,
-  icon = '📚'
+  icon = 'book-open'
 }) => {
+  const IconComponent = iconMap[icon];
+
   return (
     <Link href={`/guides/${slug}`} className={styles.guideCard}>
       <div className={styles.iconWrapper}>
-        <span className={styles.icon}>{icon}</span>
+        {IconComponent ? (
+          <IconComponent className={styles.iconSvg} size={32} />
+        ) : (
+          <span className={styles.icon}>{icon}</span>
+        )}
       </div>
       <div className={styles.content}>
         <div className={styles.header}>
           <h3 className={styles.title}>{title}</h3>
-          <Badge 
-            variant={difficultyColors[difficulty]} 
+          <Badge
+            variant={difficultyColors[difficulty]}
             size="small"
             className={styles.difficulty}
           >
@@ -52,7 +74,7 @@ export const GuideCard: React.FC<GuideCardProps> = ({
           </Badge>
         </div>
         <p className={styles.description}>{description}</p>
-        
+
         {topics.length > 0 && (
           <div className={styles.topics}>
             {topics.slice(0, 3).map((topic, index) => (
@@ -65,7 +87,7 @@ export const GuideCard: React.FC<GuideCardProps> = ({
             )}
           </div>
         )}
-        
+
         {relatedStandards.length > 0 && (
           <div className={styles.standards}>
             <span className={styles.standardsLabel}>Standards:</span>

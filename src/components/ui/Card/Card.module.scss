@@ -3,16 +3,17 @@
 
 .card {
   background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  transition: all 0.2s ease;
+  border-radius: 16px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
   text-align: left;
-  
+  border: 1px solid rgba($color-neutral-200, 0.6);
+  overflow: hidden;
+
   &.clickable {
     cursor: pointer;
-    border: none;
-    
+
     &:focus-visible {
       outline: 2px solid $color-primary-500;
       outline-offset: 2px;
@@ -22,8 +23,9 @@
 
 .hoverable {
   &:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transform: translateY(-2px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    transform: translateY(-4px);
+    border-color: rgba($color-primary-300, 0.5);
   }
 }
 
@@ -37,9 +39,9 @@
 }
 
 .padding-medium {
-  padding: $spacing-lg;
+  padding: $spacing-xl;
 }
 
 .padding-large {
-  padding: $spacing-xl;
+  padding: $spacing-2xl;
 }

@@ -1,0 +1,214 @@
+@import '@/styles/variables';
+@import '@/styles/mixins';
+
+.contactPage {
+    min-height: 100vh;
+    background: $color-neutral-50;
+}
+
+.hero {
+    position: relative;
+    background: linear-gradient(135deg, $color-primary-600 0%, $color-primary-800 100%);
+    color: white;
+    padding: $spacing-5xl 0;
+    text-align: center;
+    overflow: hidden;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image:
+            radial-gradient(circle at 20% 150%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 80% -50%, rgba(255, 255, 255, 0.15) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    h1 {
+        font-family: $font-heading;
+        font-size: $text-6xl;
+        font-weight: 800;
+        margin-bottom: $spacing-lg;
+        letter-spacing: -0.02em;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        color: white;
+
+        @include mobile {
+            font-size: $text-4xl;
+        }
+    }
+}
+
+.subtitle {
+    font-size: $text-xl;
+    max-width: 600px;
+    margin: 0 auto;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    font-weight: 400;
+
+    @include mobile {
+        font-size: $text-lg;
+    }
+}
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 $spacing-lg;
+    position: relative;
+    z-index: 1;
+
+    @include mobile {
+        padding: 0 $spacing-md;
+    }
+}
+
+.contentWrapper {
+    margin-top: -60px;
+    padding-bottom: $spacing-4xl;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: $spacing-2xl;
+    position: relative;
+    z-index: 2;
+
+    @include tablet {
+        grid-template-columns: 1fr;
+        margin-top: $spacing-xl;
+    }
+
+    @include mobile {
+        grid-template-columns: 1fr;
+        margin-top: $spacing-xl;
+        gap: $spacing-xl;
+    }
+}
+
+.infoSection {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+}
+
+.infoCard {
+    background: white;
+    padding: $spacing-2xl;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba($color-neutral-200, 0.5);
+    height: 100%;
+
+    h2 {
+        font-family: $font-heading;
+        font-size: $text-2xl;
+        font-weight: 700;
+        margin-bottom: $spacing-xl;
+        color: $color-neutral-900;
+    }
+}
+
+.contactDetails {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xl;
+}
+
+.contactItem {
+    display: flex;
+    align-items: flex-start;
+    gap: $spacing-lg;
+
+    .icon {
+        width: 48px;
+        height: 48px;
+        background: $color-primary-50;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: $color-primary-600;
+        flex-shrink: 0;
+    }
+
+    .details {
+        h3 {
+            font-size: $text-lg;
+            font-weight: 600;
+            color: $color-neutral-900;
+            margin-bottom: 4px;
+        }
+
+        p {
+            color: $color-neutral-600;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        a {
+            color: $color-primary-600;
+            text-decoration: none;
+            font-weight: 500;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+
+.formCard {
+    background: white;
+    padding: $spacing-3xl;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba($color-neutral-200, 0.5);
+
+    h2 {
+        font-family: $font-heading;
+        font-size: $text-2xl;
+        font-weight: 700;
+        margin-bottom: $spacing-md;
+        color: $color-neutral-900;
+    }
+
+    p {
+        color: $color-neutral-600;
+        margin-bottom: $spacing-xl;
+    }
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+}
+
+.formRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-lg;
+
+    @include mobile {
+        grid-template-columns: 1fr;
+    }
+}
+
+.mapSection {
+    margin-top: $spacing-2xl;
+    height: 400px;
+    background: $color-neutral-200;
+    border-radius: 24px;
+    overflow: hidden;
+    position: relative;
+
+    iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+}

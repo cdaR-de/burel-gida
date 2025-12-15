@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
+import { useLocale } from '@/contexts/LocaleContext';
 import styles from './SearchBar.module.scss';
 
 interface SearchBarProps {
@@ -27,6 +28,8 @@ export default function SearchBar({
   const debounceTimerRef = useRef<NodeJS.Timeout>();
   const router = useRouter();
 
+  const { locale } = useLocale();
+
   // Debounced search for suggestions
   const fetchSuggestions = useCallback(async (searchQuery: string) => {
     if (!searchQuery || searchQuery.trim().length < 2) {
@@ -36,9 +39,9 @@ export default function SearchBar({
     }
 
     setIsLoading(true);
-    
+
     try {
-      const response = await fetch(`/api/search/suggestions?q=${encodeURIComponent(searchQuery)}`);
+      const response = await fetch(`/api/search/suggestions?q=${encodeURIComponent(searchQuery)}&locale=${locale}`);
       if (response.ok) {
         const data = await response.json();
         setSuggestions(data.suggestions || []);
@@ -50,7 +53,7 @@ export default function SearchBar({
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [locale]);
 
   // Handle input change with debouncing
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,13 +77,13 @@ export default function SearchBar({
   // Handle form submission
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!query.trim()) {
       return;
     }
 
     setShowDropdown(false);
-    
+
     if (onSearch) {
       onSearch(query);
     } else {
@@ -93,7 +96,7 @@ export default function SearchBar({
   const handleSuggestionClick = (suggestion: string) => {
     setQuery(suggestion);
     setShowDropdown(false);
-    
+
     if (onSearch) {
       onSearch(suggestion);
     } else {
@@ -110,7 +113,7 @@ export default function SearchBar({
     switch (e.key) {
       case 'ArrowDown':
         e.preventDefault();
-        setSelectedIndex((prev) => 
+        setSelectedIndex((prev) =>
           prev < suggestions.length - 1 ? prev + 1 : prev
         );
         break;
@@ -180,7 +183,7 @@ export default function SearchBar({
               strokeLinejoin="round"
             />
           </svg>
-          
+
           <input
             ref={inputRef}
             type="search"
@@ -247,9 +250,8 @@ export default function SearchBar({
               key={index}
               type="button"
               onClick={() => handleSuggestionClick(suggestion)}
-              className={`${styles.suggestionItem} ${
-                index === selectedIndex ? styles.selected : ''
-              }`}
+              className={`${styles.suggestionItem} ${index === selectedIndex ? styles.selected : ''
+                }`}
               role="option"
               aria-selected={index === selectedIndex}
             >

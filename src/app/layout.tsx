@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter, Poppins } from 'next/font/google';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import { LocaleProvider } from '@/contexts/LocaleContext';
 import '@/styles/globals.scss';
 
 // Font configurations
@@ -12,7 +13,7 @@ const inter = Inter({
 });
 
 const poppins = Poppins({
-  weight: ['400', '500', '600', '700'],
+  weight: ['400', '500', '600', '700', '800'],
   subsets: ['latin', 'latin-ext'],
   variable: '--font-poppins',
   display: 'swap',
@@ -66,17 +67,18 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const locale = 'tr';
-
   return (
-    <html lang={locale} className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="tr" className={`${inter.variable} ${poppins.variable}`}>
       <body>
-        <div className="app-container">
-          <Header locale={locale} />
-          <main className="main-content">{children}</main>
-          <Footer locale={locale} />
-        </div>
+        <LocaleProvider>
+          <div className="app-container">
+            <Header />
+            <main className="main-content">{children}</main>
+            <Footer />
+          </div>
+        </LocaleProvider>
       </body>
     </html>
   );
 }
+

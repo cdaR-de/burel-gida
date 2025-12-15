@@ -4,29 +4,38 @@
 .guideCard {
   display: flex;
   gap: $spacing-lg;
-  padding: $spacing-lg;
+  padding: $spacing-xl;
   background: white;
-  border: 1px solid $color-neutral-100;
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 12px;
   text-decoration: none;
   color: inherit;
   transition: all 0.3s ease;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 
   &:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    border-color: $color-primary-500;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: rgba(59, 130, 246, 0.3);
+
+    .iconWrapper {
+      transform: scale(1.05);
+    }
 
     .icon {
       transform: scale(1.1);
+    }
+
+    .title {
+      color: $color-primary-600;
     }
   }
 
   @include mobile {
     flex-direction: column;
     gap: $spacing-md;
-    padding: $spacing-md;
+    padding: $spacing-lg;
   }
 }
 
@@ -39,10 +48,11 @@
   justify-content: center;
   background: linear-gradient(135deg, $color-primary-50 0%, $color-secondary-50 100%);
   border-radius: 12px;
+  transition: all 0.3s ease;
 
   @include mobile {
-    width: 60px;
-    height: 60px;
+    width: 64px;
+    height: 64px;
   }
 }
 
@@ -80,7 +90,8 @@
   font-size: $text-xl;
   font-weight: 600;
   color: $color-neutral-900;
-  line-height: 1.3;
+  line-height: 1.4;
+  transition: color 0.3s ease;
 
   @include mobile {
     font-size: $text-lg;
@@ -94,7 +105,7 @@
 .description {
   margin: 0;
   font-size: $text-base;
-  color: $color-neutral-700;
+  color: $color-neutral-600;
   line-height: 1.6;
 
   @include mobile {
@@ -120,7 +131,7 @@
   flex-wrap: wrap;
   gap: $spacing-xs;
   align-items: center;
-  padding-top: $spacing-xs;
+  padding-top: $spacing-sm;
   border-top: 1px solid $color-neutral-100;
 }
 

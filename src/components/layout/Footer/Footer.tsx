@@ -1,11 +1,11 @@
+'use client';
+
 import Link from 'next/link';
+import { useLocale } from '@/contexts/LocaleContext';
 import styles from './Footer.module.scss';
 
-interface FooterProps {
-  locale?: string;
-}
-
-export default function Footer({ locale = 'tr' }: FooterProps) {
+export default function Footer() {
+  const { locale } = useLocale();
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
@@ -24,21 +24,21 @@ export default function Footer({ locale = 'tr' }: FooterProps) {
   ];
 
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} role="contentinfo">
       <div className={styles.container}>
         <div className={styles.content}>
           {/* Company Info Section */}
           <div className={styles.section}>
-            <h3 className={styles.sectionTitle}>
+            <h2 className={styles.sectionTitle}>
               {locale === 'tr' ? 'Gıda Güvenliği' : 'Food Safety'}
-            </h3>
+            </h2>
             <p className={styles.description}>
               {locale === 'tr'
                 ? 'Gıda güvenliği konusunda güvenilir bilgi ve kaynak platformunuz.'
                 : 'Your trusted platform for food safety information and resources.'}
             </p>
             {/* Social Media Links */}
-            <div className={styles.socialLinks}>
+            <nav className={styles.socialLinks} aria-label="Social Media">
               <a
                 href="https://twitter.com"
                 target="_blank"
@@ -86,11 +86,11 @@ export default function Footer({ locale = 'tr' }: FooterProps) {
                   <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" stroke="white" strokeWidth="2" />
                 </svg>
               </a>
-            </div>
+            </nav>
           </div>
 
           {/* Quick Links Section */}
-          <div className={styles.section}>
+          <nav className={styles.section} aria-label="Quick Links">
             <h3 className={styles.sectionTitle}>
               {locale === 'tr' ? 'Hızlı Bağlantılar' : 'Quick Links'}
             </h3>
@@ -103,35 +103,37 @@ export default function Footer({ locale = 'tr' }: FooterProps) {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
 
           {/* Contact Information Section */}
           <div className={styles.section}>
             <h3 className={styles.sectionTitle}>
               {locale === 'tr' ? 'İletişim' : 'Contact'}
             </h3>
-            <ul className={styles.contactList}>
-              <li>
-                <strong>{locale === 'tr' ? 'E-posta:' : 'Email:'}</strong>
-                <a href="mailto:info@foodsafety.com" className={styles.contactLink}>
-                  info@foodsafety.com
-                </a>
-              </li>
-              <li>
-                <strong>{locale === 'tr' ? 'Telefon:' : 'Phone:'}</strong>
-                <a href="tel:+905551234567" className={styles.contactLink}>
-                  +90 555 123 45 67
-                </a>
-              </li>
-              <li>
-                <strong>{locale === 'tr' ? 'Adres:' : 'Address:'}</strong>
-                <span>İstanbul, Türkiye</span>
-              </li>
-            </ul>
+            <address className={styles.address}>
+              <ul className={styles.contactList}>
+                <li>
+                  <strong>{locale === 'tr' ? 'E-posta:' : 'Email:'}</strong>
+                  <a href="mailto:info@foodsafety.com" className={styles.contactLink}>
+                    info@foodsafety.com
+                  </a>
+                </li>
+                <li>
+                  <strong>{locale === 'tr' ? 'Telefon:' : 'Phone:'}</strong>
+                  <a href="tel:+905551234567" className={styles.contactLink}>
+                    +90 555 123 45 67
+                  </a>
+                </li>
+                <li>
+                  <strong>{locale === 'tr' ? 'Adres:' : 'Address:'}</strong>
+                  <span>İstanbul, Türkiye</span>
+                </li>
+              </ul>
+            </address>
           </div>
 
           {/* Legal Links Section */}
-          <div className={styles.section}>
+          <nav className={styles.section} aria-label="Legal Links">
             <h3 className={styles.sectionTitle}>
               {locale === 'tr' ? 'Yasal' : 'Legal'}
             </h3>
@@ -144,7 +146,7 @@ export default function Footer({ locale = 'tr' }: FooterProps) {
                 </li>
               ))}
             </ul>
-          </div>
+          </nav>
         </div>
 
         {/* Bottom Bar */}

@@ -39,6 +39,10 @@
   gap: $spacing-md;
 }
 
+.address {
+  font-style: normal;
+}
+
 .sectionTitle {
   @include heading-style;
   font-size: $text-lg;

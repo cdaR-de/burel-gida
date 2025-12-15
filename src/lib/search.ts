@@ -43,7 +43,7 @@ export function buildSearchIndex(locale: string = 'en'): UnifiedSearchResult[] {
   const searchIndex: UnifiedSearchResult[] = [];
 
   // Add blog posts
-  const blogPosts = getAllContent<BlogPostFrontmatter>('blog');
+  const blogPosts = getAllContent<BlogPostFrontmatter>('blog', locale);
   blogPosts.forEach((post) => {
     searchIndex.push({
       type: 'blog',
@@ -58,7 +58,7 @@ export function buildSearchIndex(locale: string = 'en'): UnifiedSearchResult[] {
   });
 
   // Add guides
-  const guides = getAllContent<GuideFrontmatter>('guides');
+  const guides = getAllContent<GuideFrontmatter>('guides', locale);
   guides.forEach((guide) => {
     searchIndex.push({
       type: 'guide',
@@ -178,13 +178,13 @@ export function getContextSnippet(
 
   // Get the first match
   const [start] = indices[0];
-  
+
   // Calculate snippet boundaries
   const snippetStart = Math.max(0, start - contextLength / 2);
   const snippetEnd = Math.min(text.length, start + contextLength / 2);
-  
+
   let snippet = text.substring(snippetStart, snippetEnd);
-  
+
   // Add ellipsis if needed
   if (snippetStart > 0) {
     snippet = '...' + snippet;
@@ -215,8 +215,8 @@ export function applyHighlighting(
       highlightedExcerpt: excerptMatch
         ? highlightMatches(result.excerpt, excerptMatch.indices)
         : contentMatch
-        ? getContextSnippet(result.content, contentMatch.indices)
-        : result.excerpt,
+          ? getContextSnippet(result.content, contentMatch.indices)
+          : result.excerpt,
     };
   });
 }

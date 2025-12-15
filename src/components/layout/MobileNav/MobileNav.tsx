@@ -1,17 +1,23 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Link from 'next/link';
+import { useLocale } from '@/contexts/LocaleContext';
 import styles from './MobileNav.module.scss';
 
 interface MobileNavProps {
   isOpen: boolean;
   onClose: () => void;
-  locale?: string;
 }
 
-export default function MobileNav({ isOpen, onClose, locale = 'tr' }: MobileNavProps) {
-  const navigationLinks = [
+export function MobileNav({ isOpen, onClose }: MobileNavProps) {
+  const { locale, setLocale } = useLocale();
+  const [searchQuery, setSearchQuery] = useState('');
+  const [isMobile, setIsMobile] = useState(true);
+  const [mounted, setMounted] = useState(false);
+
+  const navLinks = [
     { href: '/', label: locale === 'tr' ? 'Ana Sayfa' : 'Home' },
     { href: '/blog', label: locale === 'tr' ? 'Blog' : 'Blog' },
     { href: '/guides', label: locale === 'tr' ? 'Rehberler' : 'Guides' },
@@ -19,6 +25,18 @@ export default function MobileNav({ isOpen, onClose, locale = 'tr' }: MobileNavP
     { href: '/about', label: locale === 'tr' ? 'Hakkımızda' : 'About' },
     { href: '/contact', label: locale === 'tr' ? 'İletişim' : 'Contact' },
   ];
+
+  useEffect(() => {
+    setMounted(true);
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Prevent body scroll when menu is open
   useEffect(() => {
@@ -33,7 +51,7 @@ export default function MobileNav({ isOpen, onClose, locale = 'tr' }: MobileNavP
     };
   }, [isOpen]);
 
-  // Handle escape key to close menu
+  // Close on escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -45,15 +63,38 @@ export default function MobileNav({ isOpen, onClose, locale = 'tr' }: MobileNavP
     return () => document.removeEventListener('keydown', handleEscape);
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: Implement search functionality
+    console.log('Search:', searchQuery);
+  };
 
-  return (
-    <>
+  const toggleLanguage = () => {
+    setLocale(locale === 'tr' ? 'en' : 'tr');
+  };
+
+  if (!mounted || !isOpen) return null;
+
+  const drawerWidth = isMobile ? '100%' : '85%';
+  const drawerMaxWidth = isMobile ? '100%' : '400px';
+
+  const content = (
+    <div style={{ position: 'relative', zIndex: 9999 }}>
       {/* Overlay */}
       <div
         className={styles.overlay}
         onClick={onClose}
         aria-hidden="true"
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: 'rgba(0, 0, 0, 0.7)',
+          zIndex: 9998,
+          backdropFilter: 'blur(4px)',
+        }}
       />
 
       {/* Drawer */}
@@ -62,6 +103,18 @@ export default function MobileNav({ isOpen, onClose, locale = 'tr' }: MobileNavP
         role="dialog"
         aria-modal="true"
         aria-label={locale === 'tr' ? 'Mobil menü' : 'Mobile menu'}
+        style={{
+          position: 'fixed',
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: drawerWidth,
+          maxWidth: drawerMaxWidth,
+          backgroundColor: 'white',
+          zIndex: 9999,
+          height: '100%',
+          overflowY: 'auto'
+        }}
       >
         {/* Header */}
         <div className={styles.header}>
@@ -69,8 +122,8 @@ export default function MobileNav({ isOpen, onClose, locale = 'tr' }: MobileNavP
             {locale === 'tr' ? 'Menü' : 'Menu'}
           </h2>
           <button
-            className={styles.closeButton}
             onClick={onClose}
+            className={styles.closeButton}
             aria-label={locale === 'tr' ? 'Menüyü kapat' : 'Close menu'}
           >
             <svg
@@ -89,10 +142,23 @@ export default function MobileNav({ isOpen, onClose, locale = 'tr' }: MobileNavP
           </button>
         </div>
 
+        {/* Search Bar */}
+        <div className={styles.searchSection}>
+          <form onSubmit={handleSearch}>
+            <input
+              type="text"
+              placeholder={locale === 'tr' ? 'Ara...' : 'Search...'}
+              className={styles.searchInput}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </form>
+        </div>
+
         {/* Navigation Links */}
-        <nav className={styles.nav} aria-label="Mobile navigation">
+        <nav className={styles.nav} aria-label={locale === 'tr' ? 'Ana navigasyon' : 'Main navigation'}>
           <ul className={styles.navList}>
-            {navigationLinks.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -106,19 +172,13 @@ export default function MobileNav({ isOpen, onClose, locale = 'tr' }: MobileNavP
           </ul>
         </nav>
 
-        {/* Search Section */}
-        <div className={styles.searchSection}>
-          <input
-            type="search"
-            placeholder={locale === 'tr' ? 'Ara...' : 'Search...'}
-            className={styles.searchInput}
-            aria-label={locale === 'tr' ? 'Arama' : 'Search'}
-          />
-        </div>
-
         {/* Language Switcher */}
         <div className={styles.languageSection}>
-          <button className={styles.langButton} aria-label="Switch language">
+          <button
+            className={styles.langButton}
+            onClick={toggleLanguage}
+            aria-label="Switch language"
+          >
             <svg
               width="20"
               height="20"
@@ -137,6 +197,8 @@ export default function MobileNav({ isOpen, onClose, locale = 'tr' }: MobileNavP
           </button>
         </div>
       </div>
-    </>
+    </div>
   );
+
+  return createPortal(content, document.body);
 }

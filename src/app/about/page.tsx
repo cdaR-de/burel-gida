@@ -1,153 +1,135 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { CertificationDisplay } from '@/components/content';
 import { Card } from '@/components/ui';
+import { useLocale } from '@/contexts/LocaleContext';
+import { translations } from '@/lib/translations';
 import styles from './page.module.scss';
 
-export const metadata = {
-  title: 'About Us | Food Safety Excellence',
-  description: 'Learn about our mission, vision, and commitment to food safety excellence. Meet our team and partners.',
-};
-
 export default function AboutPage() {
+  const { locale } = useLocale();
+  const t = translations[locale].about;
+
+  React.useEffect(() => {
+    document.title = `${t.hero.title} | ${locale === 'tr' ? 'Gıda Güvenliği' : 'Food Safety'}`;
+  }, [locale, t.hero.title]);
+
   return (
     <div className={styles.aboutPage}>
       {/* Hero Section */}
       <section className={styles.hero}>
         <div className={styles.container}>
-          <h1>About Us</h1>
+          <h1>{t.hero.title}</h1>
           <p className={styles.subtitle}>
-            Committed to excellence in food safety education and compliance
+            {t.hero.subtitle}
           </p>
         </div>
       </section>
 
-      {/* Vision Section */}
-      <section className={styles.section}>
+      {/* Stats Section */}
+      <section className={styles.statsSection}>
         <div className={styles.container}>
-          <div className={styles.visionMission}>
-            <div className={styles.visionMissionItem}>
-              <div className={styles.icon}>🎯</div>
-              <h2>Our Vision</h2>
-              <p>
-                To be the leading resource for food safety education and compliance,
-                empowering individuals and organizations to maintain the highest
-                standards of food safety across all sectors.
-              </p>
+          <div className={styles.statsGrid}>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>15+</span>
+              <span className={styles.statLabel}>{t.stats.years}</span>
             </div>
-            <div className={styles.visionMissionItem}>
-              <div className={styles.icon}>🚀</div>
-              <h2>Our Mission</h2>
-              <p>
-                To provide accessible, comprehensive, and up-to-date food safety
-                information, resources, and guidance that help protect public health
-                and support compliance with international standards.
-              </p>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>50k+</span>
+              <span className={styles.statLabel}>{t.stats.trained}</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>100+</span>
+              <span className={styles.statLabel}>{t.stats.partners}</span>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNumber}>24/7</span>
+              <span className={styles.statLabel}>{t.stats.support}</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Story Section */}
+      {/* Story Section - Split Layout */}
       <section className={styles.section}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Our Story</h2>
-          <Card className={styles.storyCard}>
-            <p>
-              Founded with a passion for food safety and public health, our organization
-              has been at the forefront of food safety education for years. We recognized
-              the need for accessible, reliable information that bridges the gap between
-              complex regulations and practical implementation.
-            </p>
-            <p>
-              What started as a small initiative to help local food businesses understand
-              HACCP principles has grown into a comprehensive platform serving consumers,
-              professionals, producers, and restaurant owners worldwide.
-            </p>
-            <p>
-              Today, we continue to evolve, incorporating the latest research, regulatory
-              updates, and best practices to ensure our community has access to the most
-              current and relevant food safety information.
-            </p>
-          </Card>
+          <div className={styles.splitLayout}>
+            <div className={styles.splitContent}>
+              <h2 className={styles.sectionTitle}>{t.story.title}</h2>
+              <p className={styles.leadText}>
+                {t.story.lead}
+              </p>
+              <p>
+                {t.story.p1}
+              </p>
+              <p>
+                {t.story.p2}
+              </p>
+            </div>
+            <div className={styles.splitImage}>
+              <div className={styles.imageWrapper}>
+                {/* 
+                  TODO: Replace with generated image when quota allows.
+                  Using a styled placeholder for now.
+                */}
+                <div className={styles.placeholderImage} />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision & Mission - Side by Side */}
+      <section className={styles.sectionAlt}>
+        <div className={styles.container}>
+          <div className={styles.visionMissionGrid}>
+            <div className={styles.visionItem}>
+              <h2>{t.vision.title}</h2>
+              <p>
+                {t.vision.description}
+              </p>
+            </div>
+            <div className={styles.missionItem}>
+              <h2>{t.mission.title}</h2>
+              <p>
+                {t.mission.description}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Values Section */}
       <section className={styles.section}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Our Values</h2>
+          <h2 className={styles.sectionTitle}>{t.values.title}</h2>
           <div className={styles.valuesGrid}>
             <Card className={styles.valueCard}>
-              <div className={styles.valueIcon}>🔍</div>
-              <h3>Accuracy</h3>
+              <h3>{t.values.accuracy.title}</h3>
               <p>
-                We ensure all information is thoroughly researched, verified, and
-                aligned with current regulations and scientific evidence.
+                {t.values.accuracy.desc}
               </p>
             </Card>
             <Card className={styles.valueCard}>
-              <div className={styles.valueIcon}>🤝</div>
-              <h3>Accessibility</h3>
+              <h3>{t.values.accessibility.title}</h3>
               <p>
-                We make complex food safety concepts understandable and actionable
-                for everyone, regardless of their background.
+                {t.values.accessibility.desc}
               </p>
             </Card>
             <Card className={styles.valueCard}>
-              <div className={styles.valueIcon}>💡</div>
-              <h3>Innovation</h3>
+              <h3>{t.values.innovation.title}</h3>
               <p>
-                We continuously improve our platform and content to meet the
-                evolving needs of the food safety community.
+                {t.values.innovation.desc}
               </p>
             </Card>
             <Card className={styles.valueCard}>
-              <div className={styles.valueIcon}>🌍</div>
-              <h3>Integrity</h3>
+              <h3>{t.values.integrity.title}</h3>
               <p>
-                We maintain the highest ethical standards in all our operations
-                and communications, building trust with our community.
+                {t.values.integrity.desc}
               </p>
             </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Certifications Section */}
-      <section className={styles.section}>
-        <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Our Certifications</h2>
-          <p className={styles.sectionDescription}>
-            We maintain the highest standards of food safety compliance through our certifications
-          </p>
-          <div className={styles.certificationsGrid}>
-            <CertificationDisplay
-              name="ISO 22000:2018"
-              issuer="International Organization for Standardization"
-              date={new Date('2023-06-15')}
-              image="/images/certifications/iso-22000.svg"
-              verificationUrl="https://www.iso.org/standard/65464.html"
-            />
-            <CertificationDisplay
-              name="HACCP Certification"
-              issuer="Food Safety Authority"
-              date={new Date('2023-03-20')}
-              image="/images/certifications/haccp.svg"
-            />
-            <CertificationDisplay
-              name="Food Safety Management"
-              issuer="Global Food Safety Initiative"
-              date={new Date('2023-09-10')}
-              image="/images/certifications/gfsi.svg"
-              verificationUrl="https://mygfsi.com/"
-            />
-            <CertificationDisplay
-              name="Quality Management ISO 9001"
-              issuer="International Organization for Standardization"
-              date={new Date('2023-01-15')}
-              image="/images/certifications/iso-9001.svg"
-            />
           </div>
         </div>
       </section>
@@ -155,181 +137,89 @@ export default function AboutPage() {
       {/* Team Section */}
       <section className={styles.section}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Our Team</h2>
+          <h2 className={styles.sectionTitle}>{t.team.title}</h2>
           <p className={styles.sectionDescription}>
-            Meet the experts dedicated to food safety excellence
+            {t.team.subtitle}
           </p>
           <div className={styles.teamGrid}>
             <Card className={styles.teamCard}>
               <div className={styles.teamAvatar}>
-                <Image 
-                  src="/images/team/member-1.jpg" 
-                  alt="Dr. Sarah Johnson" 
+                <Image
+                  src="/images/team/member-1.jpg"
+                  alt="Dr. Sarah Johnson"
                   width={120}
                   height={120}
                 />
               </div>
               <h3>Dr. Sarah Johnson</h3>
-              <p className={styles.teamRole}>Chief Food Safety Officer</p>
+              <p className={styles.teamRole}>{t.team.roles.chief}</p>
               <p className={styles.teamQualifications}>
-                Ph.D. in Food Science, HACCP Lead Auditor, 15+ years experience
+                Ph.D. Food Science • 15+ Years Exp.
               </p>
-              <div className={styles.teamSocial}>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <span>in</span>
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                  <span>𝕏</span>
-                </a>
-              </div>
             </Card>
 
             <Card className={styles.teamCard}>
               <div className={styles.teamAvatar}>
-                <Image 
-                  src="/images/team/member-2.jpg" 
-                  alt="Michael Chen" 
+                <Image
+                  src="/images/team/member-2.jpg"
+                  alt="Michael Chen"
                   width={120}
                   height={120}
                 />
               </div>
               <h3>Michael Chen</h3>
-              <p className={styles.teamRole}>Technical Director</p>
+              <p className={styles.teamRole}>{t.team.roles.tech}</p>
               <p className={styles.teamQualifications}>
-                M.Sc. Food Technology, ISO 22000 Lead Implementer, 12+ years experience
+                M.Sc. Food Tech • ISO 22000 Lead
               </p>
-              <div className={styles.teamSocial}>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <span>in</span>
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                  <span>𝕏</span>
-                </a>
-              </div>
             </Card>
 
             <Card className={styles.teamCard}>
               <div className={styles.teamAvatar}>
-                <Image 
-                  src="/images/team/member-3.jpg" 
-                  alt="Emma Williams" 
+                <Image
+                  src="/images/team/member-3.jpg"
+                  alt="Emma Williams"
                   width={120}
                   height={120}
                 />
               </div>
               <h3>Emma Williams</h3>
-              <p className={styles.teamRole}>Education Coordinator</p>
+              <p className={styles.teamRole}>{t.team.roles.edu}</p>
               <p className={styles.teamQualifications}>
-                B.Sc. Nutrition, Certified Food Safety Trainer, 8+ years experience
+                Certified Trainer • Nutrition Expert
               </p>
-              <div className={styles.teamSocial}>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <span>in</span>
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                  <span>𝕏</span>
-                </a>
-              </div>
             </Card>
 
             <Card className={styles.teamCard}>
               <div className={styles.teamAvatar}>
-                <Image 
-                  src="/images/team/member-4.jpg" 
-                  alt="David Martinez" 
+                <Image
+                  src="/images/team/member-4.jpg"
+                  alt="David Martinez"
                   width={120}
                   height={120}
                 />
               </div>
               <h3>David Martinez</h3>
-              <p className={styles.teamRole}>Compliance Specialist</p>
+              <p className={styles.teamRole}>{t.team.roles.compliance}</p>
               <p className={styles.teamQualifications}>
-                M.Sc. Food Safety, GFSI Auditor, 10+ years experience
+                GFSI Auditor • Safety Strategist
               </p>
-              <div className={styles.teamSocial}>
-                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <span>in</span>
-                </a>
-                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-                  <span>𝕏</span>
-                </a>
-              </div>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Partners Section */}
-      <section className={styles.section}>
+      {/* CTA Section */}
+      <section className={styles.ctaSection}>
         <div className={styles.container}>
-          <h2 className={styles.sectionTitle}>Our Partners</h2>
-          <p className={styles.sectionDescription}>
-            Collaborating with leading organizations to advance food safety
-          </p>
-          <div className={styles.partnersGrid}>
-            <Card className={styles.partnerCard}>
-              <div className={styles.partnerLogo}>
-                <Image 
-                  src="/images/partners/gfsi-logo.svg" 
-                  alt="Global Food Safety Initiative" 
-                  width={200}
-                  height={80}
-                />
-              </div>
-              <h3>Global Food Safety Initiative</h3>
-              <p>
-                Collaborating on harmonizing food safety standards and promoting
-                best practices across the global food supply chain.
-              </p>
-            </Card>
-
-            <Card className={styles.partnerCard}>
-              <div className={styles.partnerLogo}>
-                <Image 
-                  src="/images/partners/fao-logo.svg" 
-                  alt="Food and Agriculture Organization" 
-                  width={200}
-                  height={80}
-                />
-              </div>
-              <h3>Food and Agriculture Organization</h3>
-              <p>
-                Working together to improve food safety knowledge and practices
-                in developing regions and support sustainable food systems.
-              </p>
-            </Card>
-
-            <Card className={styles.partnerCard}>
-              <div className={styles.partnerLogo}>
-                <Image 
-                  src="/images/partners/codex-logo.svg" 
-                  alt="Codex Alimentarius" 
-                  width={200}
-                  height={80}
-                />
-              </div>
-              <h3>Codex Alimentarius Commission</h3>
-              <p>
-                Supporting the development and implementation of international
-                food standards, guidelines, and codes of practice.
-              </p>
-            </Card>
-
-            <Card className={styles.partnerCard}>
-              <div className={styles.partnerLogo}>
-                <Image 
-                  src="/images/partners/university-logo.svg" 
-                  alt="Food Science University" 
-                  width={200}
-                  height={80}
-                />
-              </div>
-              <h3>International Food Science Institute</h3>
-              <p>
-                Partnering on research initiatives and educational programs to
-                advance food safety science and technology.
-              </p>
-            </Card>
+          <div className={styles.ctaContent}>
+            <h2>{t.cta.title}</h2>
+            <p>
+              {t.cta.description}
+            </p>
+            <a href="/contact" className={styles.ctaButton}>
+              {t.cta.button}
+            </a>
           </div>
         </div>
       </section>
