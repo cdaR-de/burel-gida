@@ -11,6 +11,9 @@ const nextConfig = {
   // Enable React strict mode for better development experience
   reactStrictMode: true,
 
+  // Enable static export for Cloudflare Pages
+  output: 'export',
+
   // Configure page extensions to include MDX
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
 

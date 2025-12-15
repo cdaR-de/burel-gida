@@ -4,16 +4,19 @@ import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useLocale } from '@/contexts/LocaleContext';
-import { SearchResultWithHighlight, SearchResultType } from '@/lib/search';
+import { UnifiedSearchResult, SearchResultType } from '@/lib/client-search'; // Updated import
+import { performClientSearch } from '@/lib/client-search'; // Updated import
 import { Badge } from '@/components/ui';
 import { Loading } from '@/components/ui';
 import styles from './page.module.scss';
+// Re-export or alias for clarity if needed, or just use UnifiedSearchResult
+type SearchResult = UnifiedSearchResult;
 
 function SearchResultsContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') || '';
-  const [results, setResults] = useState<SearchResultWithHighlight[]>([]);
-  const [groupedResults, setGroupedResults] = useState<Record<SearchResultType, SearchResultWithHighlight[]> | null>(null);
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [groupedResults, setGroupedResults] = useState<Record<SearchResultType, SearchResult[]> | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchTime, setSearchTime] = useState<number>(0);
@@ -30,27 +33,27 @@ function SearchResultsContent() {
     const performSearch = async () => {
       setIsLoading(true);
       setError(null);
+      const startTime = Date.now();
 
       try {
-        const response = await fetch(`/api/search?q=${encodeURIComponent(query)}&locale=${locale}&groupByType=false`);
+        // Use client search
+        const data = await performClientSearch(query, locale);
+        const endTime = Date.now();
 
-        if (!response.ok) {
-          throw new Error('Search failed');
-        }
-
-        const data = await response.json();
-        setResults(data.results || []);
-        setSearchTime(data.searchTime || 0);
+        setResults(data || []);
+        setSearchTime(endTime - startTime);
 
         // Group results by type
-        const grouped: Record<SearchResultType, SearchResultWithHighlight[]> = {
+        const grouped: Record<SearchResultType, SearchResult[]> = {
           blog: [],
           guide: [],
           faq: [],
         };
 
-        (data.results || []).forEach((result: SearchResultWithHighlight) => {
-          grouped[result.type].push(result);
+        (data || []).forEach((result) => {
+          if (grouped[result.type]) {
+            grouped[result.type].push(result);
+          }
         });
 
         setGroupedResults(grouped);
@@ -95,6 +98,7 @@ function SearchResultsContent() {
     return (
       <div className={styles.container}>
         <div className={styles.emptyState}>
+          {/* SVG Content */}
           <svg
             className={styles.emptyIcon}
             width="64"
@@ -218,17 +222,15 @@ function SearchResultsContent() {
                     <Link href={result.url} className={styles.resultLink}>
                       <h3
                         className={styles.resultTitle}
-                        dangerouslySetInnerHTML={{
-                          __html: result.highlightedTitle || result.title,
-                        }}
-                      />
+                      >
+                        {result.title}
+                      </h3>
                     </Link>
                     <p
                       className={styles.resultExcerpt}
-                      dangerouslySetInnerHTML={{
-                        __html: result.highlightedExcerpt || result.excerpt,
-                      }}
-                    />
+                    >
+                      {result.excerpt}
+                    </p>
                     {result.tags && result.tags.length > 0 && (
                       <div className={styles.tags}>
                         {result.tags.slice(0, 3).map((tag, tagIndex) => (
@@ -264,17 +266,15 @@ function SearchResultsContent() {
                     <Link href={result.url} className={styles.resultLink}>
                       <h3
                         className={styles.resultTitle}
-                        dangerouslySetInnerHTML={{
-                          __html: result.highlightedTitle || result.title,
-                        }}
-                      />
+                      >
+                        {result.title}
+                      </h3>
                     </Link>
                     <p
                       className={styles.resultExcerpt}
-                      dangerouslySetInnerHTML={{
-                        __html: result.highlightedExcerpt || result.excerpt,
-                      }}
-                    />
+                    >
+                      {result.excerpt}
+                    </p>
                     {result.tags && result.tags.length > 0 && (
                       <div className={styles.tags}>
                         {result.tags.slice(0, 3).map((tag, tagIndex) => (
@@ -310,17 +310,15 @@ function SearchResultsContent() {
                     <Link href={result.url} className={styles.resultLink}>
                       <h3
                         className={styles.resultTitle}
-                        dangerouslySetInnerHTML={{
-                          __html: result.highlightedTitle || result.title,
-                        }}
-                      />
+                      >
+                        {result.title}
+                      </h3>
                     </Link>
                     <p
                       className={styles.resultExcerpt}
-                      dangerouslySetInnerHTML={{
-                        __html: result.highlightedExcerpt || result.excerpt,
-                      }}
-                    />
+                    >
+                      {result.excerpt}
+                    </p>
                   </article>
                 ))}
               </div>

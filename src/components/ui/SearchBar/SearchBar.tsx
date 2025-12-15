@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale } from '@/contexts/LocaleContext';
 import styles from './SearchBar.module.scss';
+import { getClientSuggestions } from '@/lib/client-search';
 
 interface SearchBarProps {
   placeholder?: string;
@@ -41,12 +42,9 @@ export default function SearchBar({
     setIsLoading(true);
 
     try {
-      const response = await fetch(`/api/search/suggestions?q=${encodeURIComponent(searchQuery)}&locale=${locale}`);
-      if (response.ok) {
-        const data = await response.json();
-        setSuggestions(data.suggestions || []);
-        setShowDropdown(data.suggestions?.length > 0);
-      }
+      const results = await getClientSuggestions(searchQuery, locale);
+      setSuggestions(results);
+      setShowDropdown(results.length > 0);
     } catch (error) {
       console.error('Error fetching suggestions:', error);
       setSuggestions([]);
